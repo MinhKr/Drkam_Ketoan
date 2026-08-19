@@ -1,0 +1,833 @@
+<meta charset="utf-8">
+<title>Hướng dẫn sử dụng — DrKam Duyệt Chi</title>
+<style>
+  @page { size: A4 portrait; margin: 18mm 16mm 16mm; }
+
+  :root {
+    --muc: #16202e;
+    --muc-2: #46536a;
+    --muc-3: #7c8899;
+    --chinh: #1e4e8c;
+    --chinh-nhat: #eaf0f8;
+    --vien: #d3dae4;
+    --cho: #8a5a0c;
+    --cho-nhat: #fdf5e6;
+    --dau: #b3352b;
+    --dau-nhat: #fbeceb;
+    --xong: #1c6b51;
+    --xong-nhat: #e6f2ed;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: "Segoe UI", "Be Vietnam Pro", Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: var(--muc);
+    margin: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h1, h2, h3 { line-height: 1.25; margin: 0; }
+
+  /* ── Trang bìa ─────────────────────────────────── */
+  .bia {
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 245mm;
+    text-align: center;
+  }
+  .bia .nhan {
+    font-size: 10pt;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--chinh);
+    font-weight: 600;
+  }
+  .bia h1 { font-size: 34pt; font-weight: 700; margin: 8mm 0 3mm; }
+  .bia .phu { font-size: 14pt; color: var(--muc-2); }
+  .bia .gach { width: 40mm; height: 3px; background: var(--chinh); margin: 10mm auto; }
+  .bia .cty { font-size: 11pt; font-weight: 600; }
+  .bia .meta { margin-top: 14mm; font-size: 9.5pt; color: var(--muc-3); line-height: 1.9; }
+
+  /* ── Cấu trúc ──────────────────────────────────── */
+  .phan { page-break-before: always; }
+
+  .bang-ten {
+    background: var(--chinh);
+    color: #fff;
+    padding: 4mm 6mm;
+    margin-bottom: 6mm;
+    border-radius: 2mm;
+  }
+  .bang-ten .so { font-size: 9pt; letter-spacing: 2px; opacity: .75; text-transform: uppercase; }
+  .bang-ten h2 { font-size: 19pt; font-weight: 700; margin-top: 1mm; }
+  .bang-ten p { margin: 1.5mm 0 0; font-size: 10pt; opacity: .9; }
+
+  h2.muc {
+    font-size: 14pt;
+    font-weight: 700;
+    color: var(--chinh);
+    margin: 8mm 0 3mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 2px solid var(--vien);
+    page-break-after: avoid;
+  }
+  h3.muc {
+    font-size: 11.5pt;
+    font-weight: 700;
+    margin: 6mm 0 2mm;
+    page-break-after: avoid;
+  }
+
+  p { margin: 0 0 2.5mm; }
+  ul, ol { margin: 0 0 3mm; padding-left: 6mm; }
+  li { margin-bottom: 1.2mm; }
+  strong { font-weight: 600; }
+  code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 9.5pt;
+    background: #eef1f6;
+    padding: 0.4mm 1.2mm;
+    border-radius: 1mm;
+  }
+
+  /* ── Các bước đánh số ──────────────────────────── */
+  .buoc { display: flex; gap: 4mm; margin-bottom: 4mm; page-break-inside: avoid; }
+  .buoc .stt {
+    flex: 0 0 8mm; height: 8mm;
+    background: var(--chinh); color: #fff;
+    border-radius: 50%;
+    font-weight: 700; font-size: 10pt;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .buoc .than { flex: 1; }
+  .buoc .than h3 { font-size: 11.5pt; font-weight: 700; margin: 1mm 0 1.5mm; }
+
+  /* ── Bảng ──────────────────────────────────────── */
+  table { width: 100%; border-collapse: collapse; margin: 0 0 4mm; font-size: 9.5pt; page-break-inside: avoid; }
+  th, td { border: 1px solid var(--vien); padding: 2mm 2.5mm; text-align: left; vertical-align: top; }
+  th { background: var(--chinh-nhat); font-weight: 600; color: var(--chinh); }
+
+  /* ── Khối ghi chú ──────────────────────────────── */
+  .hop { padding: 3mm 4mm; border-radius: 2mm; margin: 0 0 4mm; font-size: 9.5pt; page-break-inside: avoid; border-left: 3px solid; }
+  .hop p:last-child { margin-bottom: 0; }
+  .hop .tieu { font-weight: 700; display: block; margin-bottom: 1mm; }
+  .luu-y { background: var(--cho-nhat); border-color: var(--cho); color: #63410a; }
+  .canh-bao { background: var(--dau-nhat); border-color: var(--dau); color: #8a281f; }
+  .meo { background: var(--xong-nhat); border-color: var(--xong); color: #14503c; }
+  .ghi-chu { background: var(--chinh-nhat); border-color: var(--chinh); color: #16375f; }
+
+  .so-do {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 9pt;
+    line-height: 1.7;
+    background: #f4f6fa;
+    border: 1px solid var(--vien);
+    border-radius: 2mm;
+    padding: 4mm 5mm;
+    white-space: pre;
+    margin-bottom: 4mm;
+    page-break-inside: avoid;
+  }
+
+  .chua-lam { opacity: .55; }
+  .the {
+    display: inline-block;
+    font-size: 8pt;
+    font-weight: 700;
+    padding: 0.5mm 2mm;
+    border-radius: 1mm;
+    vertical-align: middle;
+    margin-left: 1.5mm;
+  }
+  .the-chua { background: var(--cho-nhat); color: var(--cho); border: 1px solid #e0c896; }
+  .the-xong { background: var(--xong-nhat); color: var(--xong); border: 1px solid #a8cdbe; }
+
+  .muc-luc li { margin-bottom: 2mm; }
+  .chan {
+    margin-top: 10mm;
+    padding-top: 3mm;
+    border-top: 1px solid var(--vien);
+    font-size: 9pt;
+    color: var(--muc-3);
+  }
+</style>
+
+<!-- ══════════════════ TRANG BÌA ══════════════════ -->
+<div class="bia">
+  <div class="nhan">Hướng dẫn sử dụng</div>
+  <h1>DrKam Duyệt Chi</h1>
+  <div class="phu">Hệ thống nộp và duyệt Đề nghị thanh toán</div>
+  <div class="gach"></div>
+  <div class="cty">CÔNG TY CỔ PHẦN THE FAMIDOC VIỆT NAM</div>
+  <div class="meta">
+    Phiên bản 1.0 — bản dùng thử<br>
+    Ngày 19 tháng 8 năm 2026<br>
+    Tài liệu nội bộ
+  </div>
+</div>
+
+<!-- ══════════════════ MỞ ĐẦU ══════════════════ -->
+<div class="phan">
+  <div class="bang-ten">
+    <div class="so">Mở đầu</div>
+    <h2>Hệ thống này thay cho cái gì</h2>
+    <p>Và ai dùng phần nào</p>
+  </div>
+
+  <p>
+    Trước đây mỗi đề nghị thanh toán được ghi vào file Excel
+    <code>2026_DNTT_MARKETING_v2.xlsx</code>, rồi in ra, ký, mang xuống phòng kế toán.
+    Cách đó có ba vấn đề đã xảy ra thật:
+  </p>
+
+  <ul>
+    <li><strong>Excel làm hỏng số tài khoản.</strong> Ba số tài khoản trong file cũ bị Excel
+      bóp thành dạng <code>6.635E+14</code>, mất hẳn chữ số, không khôi phục được.</li>
+    <li><strong>Không biết hồ sơ đang ở đâu.</strong> Nộp xong phải đi hỏi.</li>
+    <li><strong>Ba bảng tổng hợp ra ba con số khác nhau</strong> — 56, 55 và 15 giao dịch
+      cho cùng một kỳ.</li>
+  </ul>
+
+  <p>
+    Hệ thống mới giữ nguyên cách làm việc cũ — vẫn có phiếu giấy, vẫn ký tay, vẫn lưu bản
+    cứng — nhưng phần nhập liệu và theo dõi chuyển lên máy.
+  </p>
+
+  <h2 class="muc">Hai lối vào</h2>
+
+  <table>
+    <tr>
+      <th style="width:32%">Bạn là</th>
+      <th style="width:22%">Cần tài khoản?</th>
+      <th>Đọc phần nào</th>
+    </tr>
+    <tr>
+      <td><strong>Nhân viên các phòng</strong><br>người cần đề nghị thanh toán</td>
+      <td><strong>Không.</strong> Vào thẳng, gõ tên mình</td>
+      <td><strong>Phần A</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Ban kế toán</strong><br>giám đốc, quản trị</td>
+      <td><strong>Có.</strong> Email + mật khẩu</td>
+      <td><strong>Phần B</strong></td>
+    </tr>
+  </table>
+
+  <div class="ghi-chu hop">
+    <span class="tieu">Địa chỉ truy cập</span>
+    <p>
+      Điền địa chỉ hệ thống vào đây rồi phát tài liệu cho mọi người:
+      ______________________________________________
+    </p>
+  </div>
+
+  <h2 class="muc">Nội dung tài liệu</h2>
+  <ol class="muc-luc">
+    <li><strong>Phần A — Dành cho người nộp hồ sơ.</strong> Nộp đề nghị, in phiếu xin chữ
+      ký, theo dõi và sửa lại khi bị trả về.</li>
+    <li><strong>Phần B — Dành cho ban kế toán.</strong> Đăng nhập, hộp việc, danh mục,
+      khu quản trị.</li>
+    <li><strong>Luồng duyệt và hạn mức.</strong> Hồ sơ đi qua những ai, theo số tiền.</li>
+    <li><strong>Phần chưa hoàn thiện.</strong> Những gì còn thiếu và khi nào có.</li>
+    <li><strong>Xử lý sự cố.</strong> Các thông báo lỗi hay gặp và cách xử lý.</li>
+  </ol>
+
+  <div class="canh-bao hop">
+    <span class="tieu">Đây là bản dùng thử</span>
+    <p>
+      Phần duyệt và chi tiền <strong>chưa làm xong</strong>. Hồ sơ nộp lên sẽ chạy đúng
+      tới bàn kế toán viên phụ trách, nhưng kế toán chưa bấm duyệt được. Xem chi tiết ở
+      mục 4. Trong thời gian này <strong>vẫn giữ quy trình giấy như cũ</strong>.
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════════ PHẦN A ══════════════════ -->
+<div class="phan">
+  <div class="bang-ten">
+    <div class="so">Phần A</div>
+    <h2>Dành cho người nộp hồ sơ</h2>
+    <p>Không cần tài khoản, không cần mật khẩu</p>
+  </div>
+
+  <h2 class="muc">A1. Nộp một đề nghị thanh toán</h2>
+
+  <p>
+    Mở địa chỉ hệ thống, bấm <strong>“Tôi cần đề nghị thanh toán”</strong>. Biểu mẫu có
+    năm mục.
+  </p>
+
+  <div class="buoc">
+    <div class="stt">1</div>
+    <div class="than">
+      <h3>Bạn là ai</h3>
+      <p>
+        Gõ <strong>họ và tên đầy đủ</strong> của bạn, rồi chọn <strong>phòng ban</strong>
+        trong danh sách. Tên này sẽ in lên phiếu ở ô “Người làm đơn” nên ghi đầy đủ, đừng
+        viết tắt.
+      </p>
+    </div>
+  </div>
+
+  <div class="buoc">
+    <div class="stt">2</div>
+    <div class="than">
+      <h3>Nội dung thanh toán</h3>
+      <p>
+        Mỗi dòng gồm <strong>loại chi phí</strong>, <strong>nội dung chi tiết</strong> và
+        <strong>số tiền</strong>. Bấm <em>+ Thêm dòng</em> nếu một phiếu có nhiều khoản —
+        tất cả sẽ gộp chung vào một phiếu ĐNTT, đúng như cách làm trong file Excel cũ.
+      </p>
+      <p>
+        Tổng cộng tự tính, và hiện luôn số tiền bằng chữ để bạn soát lại.
+      </p>
+    </div>
+  </div>
+
+  <div class="buoc">
+    <div class="stt">3</div>
+    <div class="than">
+      <h3>Trả tiền cho ai</h3>
+      <p>
+        Chọn <strong>Chuyển khoản</strong> hoặc <strong>Tiền mặt</strong>. Chuyển khoản
+        thì điền: tên đơn vị hoặc người nhận, tên chủ tài khoản, số tài khoản, ngân hàng.
+        MST/CCCD không bắt buộc.
+      </p>
+      <div class="canh-bao hop">
+        <span class="tieu">Gõ số tài khoản, đừng dán từ Excel</span>
+        <p>
+          Excel hay bóp số dài thành dạng <code>6.635E+14</code> và làm mất chữ số. Đây
+          chính là lỗi đã làm hỏng ba số tài khoản trong file cũ. Mở chứng từ gốc và gõ
+          lại từng chữ số. Hệ thống sẽ chặn nếu phát hiện số đã bị hỏng.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="buoc">
+    <div class="stt">4</div>
+    <div class="than">
+      <h3>Chứng từ đính kèm <span class="the the-xong">Không bắt buộc</span></h3>
+      <p>
+        Có gì gửi nấy: báo giá, hợp đồng, đề nghị của nhà cung cấp, ảnh chụp màn hình số
+        tiền cần nạp. <strong>Chưa có gì thì cứ nộp</strong> — hóa đơn và ủy nhiệm chi vốn
+        chỉ có sau khi công ty đã chi tiền.
+      </p>
+      <p>Ba cách đưa tệp vào, dùng cách nào cũng được:</p>
+      <ul>
+        <li><strong>Kéo thả</strong> tệp từ cửa sổ Windows vào khung có nét đứt</li>
+        <li><strong>Ctrl + V</strong> để dán thẳng ảnh vừa chụp màn hình — nhanh nhất cho
+          các khoản nạp ads Facebook, ChatGPT, Capcut, Zalo Business</li>
+        <li>Bấm <strong>Chọn tệp</strong> để lấy nhiều tệp một lúc, hoặc PDF từ máy scan</li>
+      </ul>
+      <p>
+        Ảnh tự thu nhỏ và nén lại trước khi gửi nên tải rất nhanh. Bấm vào ảnh xem trước
+        để phóng to đọc chữ, bấm Esc để đóng. Mỗi tệp tối đa <strong>4 MB</strong>.
+      </p>
+    </div>
+  </div>
+
+  <div class="buoc">
+    <div class="stt">5</div>
+    <div class="than">
+      <h3>Thông tin thêm <span class="the the-xong">Không bắt buộc</span></h3>
+      <p>
+        <strong>Cần thanh toán trước ngày</strong> — nếu khoản chi có hạn.
+        <strong>Ghi chú</strong> — điều gì kế toán cần biết thêm. Ghi chú này in lên phiếu
+        ở dòng “Nội dung”.
+      </p>
+    </div>
+  </div>
+
+  <p>
+    Xong thì bấm <strong>Nộp hồ sơ</strong>. Chưa điền đủ mà muốn để đó thì bấm
+    <strong>Lưu nháp</strong> — hồ sơ chưa gửi đi đâu cả, mở lại bằng mã tra cứu để làm tiếp.
+  </p>
+
+  <div class="meo hop">
+    <span class="tieu">Nộp xong bạn nhận một mã tra cứu 16 ký tự</span>
+    <p>
+      Ví dụ <code>9FNG2Z4T2FAT6E2V</code>. <strong>Giữ mã này lại</strong> — có mã là mở
+      được hồ sơ bất cứ lúc nào để xem đang nằm ở bàn ai, mà không cần tài khoản. Cách
+      chắc chắn nhất: đánh dấu trang (Ctrl + D) ngay sau khi nộp.
+    </p>
+  </div>
+</div>
+
+<div class="phan">
+  <h2 class="muc">A2. In phiếu và xin chữ ký</h2>
+
+  <p>
+    <strong>Đây là bước bắt buộc.</strong> Nộp trên máy xong chưa phải là hết — bản giấy
+    có chữ ký mới là căn cứ để kế toán chi tiền, và là thứ công ty phải lưu trữ.
+  </p>
+
+  <div class="so-do">Nộp trên máy
+     │
+     ▼
+Bấm "In phiếu đề nghị thanh toán"
+     │
+     ▼
+Phiếu in ra đúng mẫu MKT-01, đã có sẵn:
+     • Tên bạn ở ô "Người làm đơn"
+     • Tên trưởng bộ phận ở ô "Trưởng bộ phận"
+     │
+     ▼
+Ký tay → xin chữ ký trưởng bộ phận
+     │
+     ▼
+Mang bản giấy xuống phòng kế toán
+     │
+     ▼
+Kế toán mở hệ thống, đối chiếu với bản giấy</div>
+
+  <p>
+    Nút <strong>In phiếu</strong> nằm ngay trên màn hình xác nhận sau khi nộp, và luôn có
+    ở trang hồ sơ. Bấm vào là ra bản in; dùng Ctrl + P cũng được.
+  </p>
+
+  <div class="luu-y hop">
+    <span class="tieu">Nếu ô ký để trắng</span>
+    <p>
+      Phòng nào chưa khai tên trưởng bộ phận trong hệ thống thì ô đó in ra để trắng — vẫn
+      dùng bình thường, chỉ là phải viết tay. Báo kế toán khai một lần là các phiếu sau có
+      sẵn tên.
+    </p>
+  </div>
+
+  <h2 class="muc">A3. Xem hồ sơ đang ở đâu</h2>
+
+  <p>
+    Vào trang chủ, bấm <strong>“Tra cứu hồ sơ đã nộp”</strong>, dán mã tra cứu vào. Màn
+    hình hồ sơ cho bạn thấy:
+  </p>
+
+  <ul>
+    <li>Số BK, số tiền, tình trạng hiện tại</li>
+    <li><strong>Hồ sơ đang nằm ở bàn ai</strong> và đã chờ bao lâu</li>
+    <li>Đường đi phía trước — hồ sơ này còn phải qua những ai</li>
+    <li>Nhật ký từng bước: ai làm gì, lúc nào</li>
+    <li>Toàn bộ chứng từ đã gửi</li>
+  </ul>
+
+  <h2 class="muc">A4. Khi hồ sơ bị trả về</h2>
+
+  <p>
+    Kế toán trả về thì hồ sơ quay lại chỗ bạn, <strong>luôn kèm lý do</strong>. Mở hồ sơ
+    bằng mã tra cứu, bạn sẽ thấy khung đỏ ghi rõ vì sao. Bấm
+    <strong>“Sửa và nộp lại”</strong>, sửa theo góp ý rồi nộp lại.
+  </p>
+
+  <div class="luu-y hop">
+    <span class="tieu">Hồ sơ giữ nguyên số BK</span>
+    <p>
+      Sửa và nộp lại không sinh số mới — vẫn là <code>MKT/101</code> như cũ, nên bản giấy
+      đã ký vẫn khớp. Riêng <strong>phòng ban thì không đổi được</strong>, vì số BK đã mang
+      tiền tố của phòng. Nộp nhầm phòng thì phải hủy và nộp hồ sơ mới.
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════════ PHẦN B ══════════════════ -->
+<div class="phan">
+  <div class="bang-ten">
+    <div class="so">Phần B</div>
+    <h2>Dành cho ban kế toán</h2>
+    <p>Đăng nhập bằng email và mật khẩu</p>
+  </div>
+
+  <h2 class="muc">B1. Đăng nhập</h2>
+
+  <p>
+    Trang chủ → <strong>“Tôi là kế toán”</strong>. Tài khoản đặt theo
+    <strong>bộ phận</strong> chứ không theo từng người — cả bộ phận dùng chung một tài
+    khoản, đổi người phụ trách không phải cấp lại.
+  </p>
+
+  <table>
+    <tr>
+      <th style="width:30%">Email đăng nhập</th>
+      <th style="width:28%">Bộ phận</th>
+      <th>Nhận hồ sơ từ / duyệt khi nào</th>
+    </tr>
+    <tr>
+      <td><code>ktds@drkam.vn</code></td>
+      <td>Kế toán đối soát</td>
+      <td>Marketing, Sale online</td>
+    </tr>
+    <tr>
+      <td><code>ktmh@drkam.vn</code></td>
+      <td>Kế toán mua hàng</td>
+      <td>Kho, Sale offline</td>
+    </tr>
+    <tr>
+      <td><code>ktnh@drkam.vn</code></td>
+      <td>Kế toán ngân hàng</td>
+      <td>HCNS, Kế toán, Ban giám đốc — và <strong>chi tiền ở bước cuối</strong> cho mọi hồ sơ</td>
+    </tr>
+    <tr>
+      <td><code>ktth@drkam.vn</code></td>
+      <td>Kế toán tổng hợp</td>
+      <td>Duyệt khoản chi dưới 20 triệu</td>
+    </tr>
+    <tr>
+      <td><code>ktt@drkam.vn</code></td>
+      <td>Kế toán trưởng</td>
+      <td>Duyệt khoản chi từ 20 triệu</td>
+    </tr>
+    <tr>
+      <td><code>gd@drkam.vn</code></td>
+      <td>Giám đốc</td>
+      <td>Duyệt khoản chi trên 50 triệu</td>
+    </tr>
+    <tr>
+      <td><code>qt@drkam.vn</code></td>
+      <td>Quản trị hệ thống</td>
+      <td>Khai báo, phân công, đổi hạn mức</td>
+    </tr>
+  </table>
+
+  <div class="canh-bao hop">
+    <span class="tieu">Mật khẩu</span>
+    <p>
+      Do quản trị cấp riêng, không ghi trong tài liệu này. Cả bảy tài khoản hiện dùng
+      chung một mật khẩu — <strong>ai biết email cũng duyệt chi được</strong>, nên đừng
+      chuyển tài liệu này ra ngoài phòng.
+    </p>
+  </div>
+
+  <h2 class="muc">B2. Chờ tôi xử lý</h2>
+
+  <p>
+    Màn hình đầu tiên sau khi đăng nhập. Chỉ hiện những hồ sơ
+    <strong>đang chờ chính bạn</strong>, hồ sơ nộp trước xếp lên trên. Mỗi dòng cho biết
+    số BK, người đề nghị, phòng ban, số tiền, tình trạng và đã chờ bao lâu.
+  </p>
+
+  <div class="luu-y hop">
+    <span class="tieu">Hiện chỉ xem được, chưa thao tác được</span>
+    <p>
+      Nút Duyệt và Trả về thuộc giai đoạn 3, chưa làm. Xem mục 4.
+    </p>
+  </div>
+
+  <h2 class="muc">B3. Danh mục</h2>
+
+  <p>
+    Sổ tay tra cứu của kế toán: danh sách nhà cung cấp và số tài khoản đã từng dùng, loại
+    chi phí, tài khoản chi của công ty. Dùng để <strong>đối chiếu</strong> khi thấy một số
+    tài khoản đáng ngờ trên hồ sơ mới nộp.
+  </p>
+  <p>
+    Danh mục này không ảnh hưởng tới người nộp — họ tự gõ thông tin người nhận theo chứng
+    từ gốc.
+  </p>
+
+  <div class="luu-y hop">
+    <span class="tieu">Ba số tài khoản cần nhập lại bằng tay</span>
+    <p>
+      Bùi Phương Anh, Nguyễn Hồng Minh Châu và Bùi Đăng Dương hiện <strong>chưa có số tài
+      khoản</strong> trong danh mục. Excel đã làm hỏng ba số này, không suy ngược ra được.
+      Mở chứng từ gốc, đối chiếu rồi nhập lại.
+    </p>
+  </div>
+
+  <h2 class="muc">B4. Quản trị</h2>
+
+  <p>Chỉ tài khoản <code>qt@drkam.vn</code> vào được. Năm mục, làm theo thứ tự này:</p>
+
+  <table>
+    <tr>
+      <th style="width:26%">Mục</th>
+      <th>Làm gì</th>
+    </tr>
+    <tr>
+      <td><strong>Phòng ban</strong></td>
+      <td>Mã phòng là tiền tố số BK — Marketing mã <code>MKT</code> thì hồ sơ đánh số
+        <code>MKT/101</code>. Khai luôn <strong>tên trưởng bộ phận</strong> để in sẵn vào
+        ô ký trên phiếu.</td>
+    </tr>
+    <tr>
+      <td><strong>Nhân sự</strong></td>
+      <td>Chỉ dùng khi cấp tài khoản đăng nhập. Người nộp hồ sơ tự gõ tên mình nên
+        <strong>không cần khai đủ mọi người</strong> ở đây.</td>
+    </tr>
+    <tr>
+      <td><strong>Tài khoản</strong></td>
+      <td>Cấp, khóa, đổi vai trò. Bật <em>Đang nghỉ</em> khi ai đó nghỉ phép — hồ sơ tự
+        chuyển sang người thay.</td>
+    </tr>
+    <tr>
+      <td><strong>Phân công</strong></td>
+      <td>Phòng nào do bộ phận kế toán nào phụ trách. <strong>Đây là bảng quyết định hồ sơ
+        chạy về bàn ai.</strong> Phòng chưa phân công thì người nộp bị chặn ngay lúc bấm nộp.</td>
+    </tr>
+    <tr>
+      <td><strong>Hạn mức</strong></td>
+      <td>Mốc 20 triệu và 50 triệu, tên công ty, địa chỉ, các dòng chữ in trên phiếu.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ══════════════════ LUỒNG DUYỆT ══════════════════ -->
+<div class="phan">
+  <div class="bang-ten">
+    <div class="so">Mục 3</div>
+    <h2>Luồng duyệt và hạn mức</h2>
+    <p>Hồ sơ đi qua những ai</p>
+  </div>
+
+  <div class="so-do">   Nhân viên nộp trên máy
+        │
+        ├──► In phiếu → ký tay → xin chữ ký trưởng bộ phận
+        │    (ngoài hệ thống — bản giấy mang xuống kế toán)
+        ▼
+   Kế toán viên phụ trách phòng đó
+   (đối soát / mua hàng / ngân hàng — theo bảng phân công)
+        │
+        ▼
+   Dưới 20 triệu ──► Kế toán tổng hợp
+   Từ 20 triệu   ──► Kế toán trưởng
+        │
+        ▼
+   Trên 50 triệu ──► Giám đốc          (chỉ khi vượt mức)
+        │
+        ▼
+   Kế toán ngân hàng → chi tiền → tải ủy nhiệm chi
+        │
+        ▼
+      HOÀN THÀNH</div>
+
+  <p>
+    <strong>Mọi cấp đều trả về được</strong>, trả thẳng về người nộp và
+    <strong>bắt buộc ghi rõ lý do</strong>. Hồ sơ giữ nguyên số BK khi nộp lại.
+  </p>
+
+  <h2 class="muc">Trưởng bộ phận không duyệt trên máy</h2>
+
+  <p>
+    Chữ ký trưởng bộ phận nằm trên <strong>bản in</strong>, ký tay trước khi mang xuống
+    phòng kế toán. Hệ thống chỉ in sẵn tên vào ô ký cho khỏi phải viết. Làm vậy vì bản
+    cứng dù sao cũng phải lưu trữ, thêm một bước duyệt trên máy chỉ làm chậm.
+  </p>
+
+  <h2 class="muc">Cách đánh số BK</h2>
+
+  <p>
+    Giữ đúng cách cũ: <code>MKT/101</code> — mã phòng, gạch chéo, số thứ tự. Đếm liên tục,
+    không reset theo năm. Số do hệ thống tự cấp lúc bấm nộp, không ai đặt tay được nên
+    không bao giờ trùng.
+  </p>
+  <p>
+    Phòng Marketing bắt đầu từ <strong>101</strong> để không đè lên các số đã phát hành
+    trên giấy (file Excel đang chạy tới khoảng MKT/43). Sáu phòng còn lại đánh số từ 1.
+  </p>
+
+  <table>
+    <tr><th>Phòng ban</th><th>Mã</th><th>Số BK sẽ có dạng</th></tr>
+    <tr><td>Marketing</td><td><code>MKT</code></td><td><code>MKT/101</code></td></tr>
+    <tr><td>Sale online</td><td><code>SALE</code></td><td><code>SALE/1</code></td></tr>
+    <tr><td>Sale offline</td><td><code>SALEOFF</code></td><td><code>SALEOFF/1</code></td></tr>
+    <tr><td>Kho</td><td><code>KHO</code></td><td><code>KHO/1</code></td></tr>
+    <tr><td>Hành chính nhân sự</td><td><code>HCNS</code></td><td><code>HCNS/1</code></td></tr>
+    <tr><td>Kế toán</td><td><code>KT</code></td><td><code>KT/1</code></td></tr>
+    <tr><td>Ban giám đốc</td><td><code>BGD</code></td><td><code>BGD/1</code></td></tr>
+  </table>
+</div>
+
+<!-- ══════════════════ CHƯA HOÀN THIỆN ══════════════════ -->
+<div class="phan">
+  <div class="bang-ten">
+    <div class="so">Mục 4</div>
+    <h2>Phần chưa hoàn thiện</h2>
+    <p>Đọc kỹ mục này trước khi dùng thật</p>
+  </div>
+
+  <h2 class="muc">Đã làm xong <span class="the the-xong">Dùng được</span></h2>
+
+  <ul>
+    <li>Nộp đề nghị thanh toán không cần tài khoản</li>
+    <li>Nhiều dòng chi tiết gộp chung một phiếu</li>
+    <li>Đính kèm chứng từ: kéo thả, Ctrl + V, tự nén ảnh</li>
+    <li>Tự cấp số BK theo phòng ban, không trùng</li>
+    <li>Tự định tuyến hồ sơ tới đúng bộ phận kế toán phụ trách</li>
+    <li>Mã tra cứu riêng cho mỗi hồ sơ — xem tiến độ, sửa lại</li>
+    <li>Lưu nháp</li>
+    <li>In phiếu ĐNTT đúng mẫu MKT-01, có sẵn tên ở các ô ký</li>
+    <li>Đăng nhập, phân quyền theo bảy vai trò</li>
+    <li>Hộp việc “Chờ tôi xử lý”</li>
+    <li>Khu quản trị: phòng ban, nhân sự, tài khoản, phân công, hạn mức</li>
+    <li>Danh mục nhà cung cấp, loại chi phí, tài khoản công ty</li>
+    <li>Nhật ký hồ sơ — không ai sửa hay xóa được, kể cả quản trị</li>
+  </ul>
+
+  <h2 class="muc chua-lam">Chưa làm — giai đoạn 3 <span class="the the-chua">Đang chờ</span></h2>
+
+  <p>Đây là phần lõi còn lại. <strong>Chưa có nó thì hồ sơ không đi hết vòng được.</strong></p>
+
+  <table>
+    <tr><th style="width:34%">Chức năng</th><th>Sẽ làm được gì</th></tr>
+    <tr>
+      <td><strong>Màn hình chi tiết hồ sơ</strong></td>
+      <td>Kế toán mở từng hồ sơ, xem nội dung và phóng to chứng từ ngay trên màn hình</td>
+    </tr>
+    <tr>
+      <td><strong>Nút Duyệt</strong></td>
+      <td>Tự tính bước tiếp theo theo hạn mức và chuyển đúng người</td>
+    </tr>
+    <tr>
+      <td><strong>Nút Trả về</strong></td>
+      <td>Bắt buộc ghi lý do, hồ sơ về thẳng người nộp để sửa</td>
+    </tr>
+    <tr>
+      <td><strong>Chi tiền</strong></td>
+      <td>Kế toán ngân hàng nhập số ủy nhiệm chi, tải UNC lên, đóng hồ sơ</td>
+    </tr>
+    <tr>
+      <td><strong>Tất cả hồ sơ</strong></td>
+      <td>Danh sách toàn bộ ĐNTT, lọc theo phòng ban, trạng thái, khoảng tiền, khoảng ngày</td>
+    </tr>
+  </table>
+
+  <div class="canh-bao hop">
+    <span class="tieu">Hệ quả trong lúc chưa có giai đoạn 3</span>
+    <p>
+      Hồ sơ nộp lên sẽ <strong>dừng lại ở trạng thái “Chờ kế toán viên”</strong> và nằm đó.
+      Kế toán nhìn thấy nhưng chưa bấm duyệt được. <strong>Vẫn phải giữ quy trình giấy như
+      cũ</strong> để tiền vẫn chi được đúng hạn.
+    </p>
+    <p>
+      Ngoài ra, bấm vào số BK trong màn hình “Chờ tôi xử lý” hiện ra
+      <strong>trang báo lỗi 404</strong> vì màn hình chi tiết chưa có. Đây là lỗi đã biết,
+      sẽ hết khi làm xong giai đoạn 3.
+    </p>
+  </div>
+
+  <h2 class="muc chua-lam">Dự kiến sau đó <span class="the the-chua">Chưa chốt</span></h2>
+
+  <ul class="chua-lam">
+    <li>Email báo khi có hồ sơ chuyển tới bàn mình</li>
+    <li>Báo cáo tổng hợp thay cho ba sheet thống kê trong file Excel cũ</li>
+    <li>Xuất dữ liệu ra Excel để đối chiếu sổ sách</li>
+    <li>Tờ trình in kèm cho các khoản lớn</li>
+  </ul>
+
+  <p class="chua-lam">
+    Những mục này chưa thống nhất phạm vi. Phòng kế toán dùng thử rồi góp ý sẽ quyết định
+    làm cái nào trước.
+  </p>
+
+  <h2 class="muc">Bản dùng thử này chạy ở đâu</h2>
+
+  <p>
+    Hiện đặt trên dịch vụ Vercel để mọi người xem và góp ý. <strong>Đây chưa phải bản chạy
+    thật.</strong> Ba lý do:
+  </p>
+  <ul>
+    <li>Gói miễn phí của Vercel <strong>không được dùng cho hoạt động kinh doanh</strong></li>
+    <li>Dữ liệu đặt ở Singapore, ngoài lãnh thổ Việt Nam — cần cân nhắc Nghị định 13/2023</li>
+    <li>Biểu mẫu nộp không đòi đăng nhập, mà bản thử này lại mở ra Internet</li>
+  </ul>
+  <p>
+    Khi chốt dùng thật, hệ thống sẽ chuyển về chạy trong mạng nội bộ công ty.
+  </p>
+</div>
+
+<!-- ══════════════════ XỬ LÝ SỰ CỐ ══════════════════ -->
+<div class="phan">
+  <div class="bang-ten">
+    <div class="so">Mục 5</div>
+    <h2>Xử lý sự cố</h2>
+    <p>Các thông báo hay gặp và cách xử lý</p>
+  </div>
+
+  <table>
+    <tr>
+      <th style="width:44%">Thông báo trên màn hình</th>
+      <th>Nghĩa là gì và làm sao</th>
+    </tr>
+    <tr>
+      <td>“Phòng của bạn chưa được phân công kế toán viên phụ trách…”</td>
+      <td>Phòng bạn chưa ai nhận. Báo kế toán vào <strong>Quản trị › Phân công</strong>
+        khai một lần là xong.</td>
+    </tr>
+    <tr>
+      <td>“Số tài khoản đang ở dạng số khoa học hoặc có dấu chấm…”</td>
+      <td>Bạn đã dán số từ Excel và Excel đã làm hỏng nó. Mở chứng từ gốc, gõ lại từng
+        chữ số.</td>
+    </tr>
+    <tr>
+      <td>“Số tài khoản chỉ gồm chữ và số, dài từ 6 đến 30 ký tự.”</td>
+      <td>Có khoảng trắng, dấu gạch hoặc ký tự lạ. Xóa hết, chỉ để chữ và số.</td>
+    </tr>
+    <tr>
+      <td>“Tệp … nặng … MB, quá mức 4 MB”</td>
+      <td>Ảnh thì chụp lại nhỏ hơn. PDF nhiều trang thì tách ra vài tệp.</td>
+    </tr>
+    <tr>
+      <td>“Chỉ nhận ảnh hoặc PDF.”</td>
+      <td>Không nhận file Word, Excel. Chuyển sang PDF hoặc chụp màn hình.</td>
+    </tr>
+    <tr>
+      <td>“Tài khoản này chưa được cấp quyền trong hệ thống.”</td>
+      <td>Email có nhưng chưa được phân vai trò. Báo quản trị.</td>
+    </tr>
+    <tr>
+      <td>“Hồ sơ … đã cấp số theo phòng cũ nên không đổi sang phòng khác được.”</td>
+      <td>Nộp nhầm phòng. Số BK đã mang tiền tố phòng nên phải nộp hồ sơ mới.</td>
+    </tr>
+    <tr>
+      <td>“Hồ sơ đang ở trạng thái … nên không sửa được nữa.”</td>
+      <td>Đã có người đang xử lý. Chỉ hồ sơ nháp hoặc bị trả về mới sửa được. Cần sửa gấp
+        thì gọi cho kế toán đang giữ hồ sơ, nhờ trả về.</td>
+    </tr>
+    <tr>
+      <td>Màn hình “Chưa nối cơ sở dữ liệu”</td>
+      <td>Lỗi cấu hình phía kỹ thuật, không phải lỗi của bạn. Báo quản trị.</td>
+    </tr>
+    <tr>
+      <td>Mất mã tra cứu</td>
+      <td>Không tự tìm lại được. Nhờ kế toán tra số BK trong hệ thống.</td>
+    </tr>
+  </table>
+
+  <h2 class="muc">Câu hỏi hay gặp</h2>
+
+  <h3 class="muc">Tôi không có chứng từ gì cả, nộp được không?</h3>
+  <p>
+    Được. Đề nghị thanh toán là xin công ty trả tiền hộ nên lúc nộp thường chưa có gì —
+    hóa đơn và ủy nhiệm chi chỉ có sau khi đã chi. Kế toán thiếu giấy tờ gì sẽ trả về và
+    nói rõ cần bổ sung cái gì.
+  </p>
+
+  <h3 class="muc">Một phiếu nhiều khoản chi thì làm sao?</h3>
+  <p>
+    Bấm <em>+ Thêm dòng</em> ở mục 2. Bao nhiêu dòng cũng được, tất cả gộp vào một phiếu
+    và một số BK — giống hệt cách nhiều dòng cùng số BK trong file Excel cũ.
+  </p>
+
+  <h3 class="muc">Tên tôi không có trong danh sách?</h3>
+  <p>
+    Không cần. Bạn <strong>tự gõ họ tên</strong>, chỉ chọn phòng ban từ danh sách.
+  </p>
+
+  <h3 class="muc">Điện thoại dùng được không?</h3>
+  <p>
+    Được, nhưng hệ thống làm cho máy tính là chính. Trên điện thoại có thêm nút
+    <strong>Chụp ảnh</strong> để chụp chứng từ trực tiếp.
+  </p>
+
+  <div class="chan">
+    <p>
+      <strong>DrKam Duyệt Chi</strong> — Hướng dẫn sử dụng phiên bản 1.0, ngày 19/8/2026.<br>
+      Tài liệu nội bộ Công ty Cổ phần The Famidoc Việt Nam. Không phát hành ra ngoài.<br>
+      Góp ý và báo lỗi: gửi về phòng Marketing.
+    </p>
+  </div>
+</div>

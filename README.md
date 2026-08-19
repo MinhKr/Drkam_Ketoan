@@ -10,6 +10,8 @@ Hệ thống nộp và duyệt Đề nghị thanh toán, thay cho quy trình đa
 Kế hoạch đầy đủ: [`docs/ke-hoach-v1.html`](docs/ke-hoach-v1.html)
 Danh sách tài khoản đăng nhập: [`docs/tai-khoan.md`](docs/tai-khoan.md) — nội bộ, có mật khẩu
 Đưa lên Vercel để demo: [`docs/deploy-vercel.md`](docs/deploy-vercel.md)
+Hướng dẫn sử dụng cho người dùng cuối: [`docs/DrKam-Duyet-Chi-Huong-dan-su-dung.pdf`](docs/DrKam-Duyet-Chi-Huong-dan-su-dung.pdf)
+(soạn từ `docs/huong-dan-su-dung.html` — sửa file HTML rồi in lại ra PDF bằng Chrome)
 
 ---
 
