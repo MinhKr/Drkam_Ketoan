@@ -1,0 +1,1054 @@
+<title>DrKam Duyệt Chi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root {
+  --paper:     #F6F7FA;
+  --surface:   #FFFFFF;
+  --surface-2: #EDF0F6;
+  --ink:       #16202E;
+  --ink-2:     #46536A;
+  --ink-3:     #7A879B;
+  --rule:      #D8DEE8;
+  --rule-soft: #E6EAF1;
+  --accent:    #1E4E8C;
+  --accent-2:  #12325C;
+  --accent-bg: #E4EBF6;
+  --stamp:     #B3352B;
+  --stamp-bg:  #F8E7E4;
+  --wait:      #8F5C0D;
+  --wait-bg:   #FAEEDA;
+  --done:      #1F6B52;
+  --done-bg:   #DDEFE7;
+  --shadow:    0 1px 2px rgba(22,32,46,.05), 0 10px 26px -16px rgba(22,32,46,.30);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:     #0F151E;
+    --surface:   #171F2B;
+    --surface-2: #1E2836;
+    --ink:       #E8EDF4;
+    --ink-2:     #A7B3C4;
+    --ink-3:     #77869A;
+    --rule:      #2C3849;
+    --rule-soft: #232E3D;
+    --accent:    #7FAAE2;
+    --accent-2:  #AAC8EE;
+    --accent-bg: #1A2A41;
+    --stamp:     #E58B82;
+    --stamp-bg:  #38221F;
+    --wait:      #DDA85A;
+    --wait-bg:   #362A16;
+    --done:      #6FBF9C;
+    --done-bg:   #143026;
+    --shadow:    0 1px 2px rgba(0,0,0,.45), 0 12px 30px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"] {
+  --paper:     #0F151E;
+  --surface:   #171F2B;
+  --surface-2: #1E2836;
+  --ink:       #E8EDF4;
+  --ink-2:     #A7B3C4;
+  --ink-3:     #77869A;
+  --rule:      #2C3849;
+  --rule-soft: #232E3D;
+  --accent:    #7FAAE2;
+  --accent-2:  #AAC8EE;
+  --accent-bg: #1A2A41;
+  --stamp:     #E58B82;
+  --stamp-bg:  #38221F;
+  --wait:      #DDA85A;
+  --wait-bg:   #362A16;
+  --done:      #6FBF9C;
+  --done-bg:   #143026;
+  --shadow:    0 1px 2px rgba(0,0,0,.45), 0 12px 30px -18px rgba(0,0,0,.8);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.doc {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+.prose { max-width: 68ch; display: flex; flex-direction: column; gap: 16px; }
+
+h1, h2, h3 {
+  font-family: Lora, Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  margin: 0;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+h1 { font-size: clamp(2.1rem, 5.2vw, 3.05rem); font-weight: 600; line-height: 1.12; }
+h2 { font-size: clamp(1.45rem, 3vw, 1.8rem); font-weight: 600; line-height: 1.22; }
+h3 { font-size: 1.08rem; font-weight: 600; line-height: 1.35; }
+p  { margin: 0; }
+
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.muted { color: var(--ink-2); }
+.small { font-size: .875rem; }
+
+.masthead { padding: 64px 0 0; display: flex; flex-direction: column; gap: 20px; }
+.masthead .lede {
+  font-family: Lora, Georgia, serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.22rem);
+  line-height: 1.58;
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+.docmeta {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 0;
+  margin: 6px 0 0;
+}
+.docmeta > div {
+  padding-right: 30px;
+  margin-right: 30px;
+  border-right: 1px solid var(--rule-soft);
+}
+.docmeta > div:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+.docmeta dt {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .67rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 2px;
+}
+.docmeta dd { margin: 0; font-size: .92rem; font-weight: 500; }
+
+.sec { display: flex; flex-direction: column; gap: 22px; }
+.sec-head { display: flex; flex-direction: column; gap: 8px; max-width: 68ch; }
+.sec-head .rule { height: 2px; width: 44px; background: var(--accent); border-radius: 2px; margin-bottom: 4px; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .03em;
+  padding: 3px 9px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.chip-wait { background: var(--wait-bg);   color: var(--wait);   }
+.chip-done { background: var(--done-bg);   color: var(--done);   }
+.chip-back { background: var(--stamp-bg);  color: var(--stamp);  }
+.chip-move { background: var(--accent-bg); color: var(--accent-2); }
+.chip-idle { background: var(--surface-2); color: var(--ink-2);  }
+
+.flow { display: flex; flex-direction: column; }
+.flow-track {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 4px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(212px, 1fr);
+  gap: 14px;
+  overflow-x: auto;
+}
+.step {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  box-shadow: var(--shadow);
+}
+.step-n {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  color: var(--accent);
+}
+.step h3 { font-size: 1rem; }
+.step p { font-size: .85rem; color: var(--ink-2); line-height: 1.5; }
+.step .actor {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--ink);
+  border-top: 1px dashed var(--rule);
+  padding-top: 9px;
+  margin-top: auto;
+}
+.flow-return {
+  margin-top: 14px;
+  border: 1px dashed var(--stamp);
+  border-radius: 4px;
+  background: var(--stamp-bg);
+  padding: 13px 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.flow-return .arrow {
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--stamp);
+  font-weight: 600;
+  font-size: .8rem;
+  letter-spacing: .1em;
+}
+.flow-return p { font-size: .875rem; color: var(--ink-2); flex: 1 1 320px; }
+.flow-return strong { color: var(--stamp); font-weight: 600; }
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: .9rem; }
+thead th {
+  text-align: left;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .67rem;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface-2);
+  white-space: nowrap;
+}
+tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: top;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: 0; }
+tbody td:first-child { color: var(--ink); font-weight: 500; }
+.code {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .82em;
+  color: var(--accent-2);
+}
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr)); gap: 14px; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: var(--shadow);
+}
+.card h3 { font-size: 1rem; }
+.card p, .card li { font-size: .875rem; color: var(--ink-2); line-height: 1.55; }
+.card ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 5px; }
+
+.qlist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.qlist > li {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 14px;
+  padding: 15px 16px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+.qn {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--stamp);
+  padding-top: 2px;
+}
+.qbody { display: flex; flex-direction: column; gap: 6px; }
+.qbody p { font-size: .92rem; }
+.qbody .sug { font-size: .86rem; color: var(--ink-2); }
+.qbody .sug b { color: var(--accent); font-weight: 600; }
+
+.stack { display: flex; flex-direction: column; margin: 0; }
+.stack > div {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  align-items: baseline;
+}
+.stack > div:first-child { border-top: 1px solid var(--rule); }
+.stack dt { font-weight: 600; font-size: .92rem; }
+.stack dd { margin: 0; font-size: .9rem; color: var(--ink-2); }
+.pick {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .85rem;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.callout {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-bg);
+  padding: 16px 20px;
+  border-radius: 0 4px 4px 0;
+  max-width: 72ch;
+}
+.callout p { font-size: .92rem; color: var(--ink-2); }
+.callout strong { color: var(--ink); }
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 20px;
+  color: var(--ink-3);
+  font-size: .85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+@media (max-width: 620px) {
+  .stack > div { grid-template-columns: 1fr; gap: 4px; }
+  .docmeta > div { border-right: 0; margin-right: 0; padding-right: 20px; }
+  .masthead { padding-top: 40px; }
+  .doc { gap: 44px; }
+}
+</style>
+
+<div class="doc">
+
+  <header class="masthead">
+    <span class="eyebrow">Kế hoạch triển khai · Bản thảo v1</span>
+    <h1>DrKam Duyệt Chi</h1>
+    <p class="lede">Hệ thống nộp và duyệt Đề nghị thanh toán trên nền web: phòng ban scan chứng từ, kế toán viên kiểm tra, kế toán tổng hợp hoặc kế toán trưởng duyệt, kế toán ngân hàng tải Ủy nhiệm chi lên là xong. Một luồng, năm bước, không có bước nào thừa.</p>
+    <dl class="docmeta">
+      <div><dt>Ngày lập</dt><dd class="num">18/08/2026</dd></div>
+      <div><dt>Phạm vi</dt><dd>Đề nghị thanh toán nội bộ</dd></div>
+      <div><dt>Ước tính</dt><dd class="num">32 ngày công · 6–8 tuần</dd></div>
+      <div><dt>Phí phần mềm</dt><dd>0đ — mã nguồn mở toàn bộ</dd></div>
+      <div><dt>Trạng thái</dt><dd>Đã chốt luồng duyệt</dd></div>
+    </dl>
+  </header>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Hệ thống này giải quyết chuyện gì</h2>
+    </div>
+    <div class="prose">
+      <p>Hôm nay một tờ Đề nghị thanh toán đi qua nhiều bàn tay và không ai biết nó đang nằm ở đâu. Người đề nghị phải hỏi. Kế toán phải lục. Hồ sơ thiếu chứng từ thì quay về bằng miệng, không ghi lại lý do, và lần sau lại thiếu đúng chỗ đó.</p>
+      <p>Bốn nguyên tắc thiết kế, đặt ra để sản phẩm <em>đơn giản hơn Lark</em> chứ không phải chép lại Lark:</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <h3>Một hộp việc duy nhất</h3>
+        <p>Mỗi người mở app lên chỉ thấy đúng một danh sách: <strong>“Chờ tôi xử lý”</strong>. Không menu nhiều tầng, không phải học cách dùng.</p>
+      </article>
+      <article class="card">
+        <h3>Hồ sơ luôn có chủ</h3>
+        <p>Mọi ĐNTT tại mọi thời điểm đều thuộc về đúng một người. Nhìn vào là biết đang chờ ai và chờ bao lâu rồi.</p>
+      </article>
+      <article class="card">
+        <h3>Trả về phải có lý do</h3>
+        <p>Không cho từ chối suông. Bắt buộc nhập lý do, lý do đó đi kèm hồ sơ và hiện ngay khi người đề nghị mở ra sửa.</p>
+      </article>
+      <article class="card">
+        <h3>Nộp được từ điện thoại</h3>
+        <p>Phòng ban chụp chứng từ bằng camera, hệ thống tự gộp thành một PDF. Không cần về bàn làm việc, không cần máy scan.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Hai lối vào</h2>
+      <p class="muted small">Mở app lên là hai nút lớn, không có gì khác trên màn hình. Nhân viên các phòng vào thẳng, chỉ kế toán mới cần mật khẩu.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card" style="border-top:3px solid var(--accent)">
+        <h3>Tôi cần đề nghị thanh toán</h3>
+        <p><span class="chip chip-done">Không cần tài khoản</span></p>
+        <p>Bấm vào là ra thẳng biểu mẫu. Chọn tên mình từ danh sách nhân sự — phòng ban tự điền theo — rồi nhập nội dung và đính kèm chứng từ.</p>
+        <p>Nộp xong nhận <strong>một mã tra cứu và đường link riêng</strong> của hồ sơ. Mở link đó là thấy hồ sơ đang nằm ở bàn ai. Bị trả về thì sửa ngay trên chính link đó rồi nộp lại.</p>
+      </article>
+      <article class="card" style="border-top:3px solid var(--stamp)">
+        <h3>Tôi là kế toán</h3>
+        <p><span class="chip chip-back">Cần đăng nhập</span></p>
+        <p>Có tài khoản và mật khẩu riêng. Đăng nhập xong thấy ngay hộp việc <strong>“Chờ tôi xử lý”</strong> đúng theo vai trò của mình.</p>
+        <p>Mọi thao tác duyệt, trả về, chi tiền đều gắn tên người thực hiện vào nhật ký hồ sơ. Trưởng bộ phận và giám đốc cũng đi lối này.</p>
+      </article>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Ba việc phải làm để lối vào không cần tài khoản chạy được</th><th>Cách làm</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hồ sơ bị trả về phải quay lại đúng người</td>
+            <td>Đường link riêng cấp lúc nộp, giống mã vận đơn. Người nộp có thể nhận thêm qua email hoặc Zalo nếu điền số liên hệ, khỏi lo mất link</td>
+          </tr>
+          <tr>
+            <td>Không để người ngoài nộp bừa</td>
+            <td>Hệ thống chỉ mở trong mạng nội bộ công ty. Nếu cần dùng từ ngoài thì thêm một mã PIN chung cho nhân viên, đổi định kỳ</td>
+          </tr>
+          <tr>
+            <td>Biết chắc ai là người nộp</td>
+            <td>Tên chọn từ danh sách nhân sự do kế toán quản lý, không gõ tự do. Chữ ký trên phiếu ĐNTT in ra vẫn là căn cứ pháp lý như hiện nay — app chỉ lo phần luân chuyển</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Vai trò người dùng</h2>
+      <p class="muted small">Chỉ nhóm bên dưới mới có tài khoản. Người đề nghị không nằm trong danh sách này vì không cần đăng nhập.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Vai trò</th><th>Viết tắt</th><th>Làm được gì</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Người đề nghị</td><td><span class="code">NDN</span></td><td><em>Không có tài khoản.</em> Vào thẳng, chọn tên mình, nộp hồ sơ. Theo dõi và sửa lại qua đường link riêng của hồ sơ</td></tr>
+          <tr><td>Trưởng bộ phận</td><td><span class="code">TBP</span></td><td>Duyệt trước ở cấp phòng rồi hồ sơ mới sang kế toán. <strong>Bật hoặc tắt theo từng phòng ban</strong></td></tr>
+          <tr><td>Kế toán viên</td><td><span class="code">KTV</span></td><td>Nhận hồ sơ của các phòng ban được phân công, kiểm tra tính hợp lệ, đẩy lên duyệt hoặc trả về</td></tr>
+          <tr><td>Kế toán tổng hợp</td><td><span class="code">KTTH</span></td><td>Duyệt hồ sơ trong hạn mức, trả về nếu không đạt</td></tr>
+          <tr><td>Kế toán trưởng</td><td><span class="code">KTT</span></td><td>Duyệt hồ sơ vượt hạn mức, xem toàn bộ hồ sơ, xem báo cáo</td></tr>
+          <tr><td>Giám đốc</td><td><span class="code">GĐ</span></td><td>Duyệt cuối, <strong>chỉ với hồ sơ vượt hạn mức lớn</strong>. Hồ sơ nhỏ không lên tới bàn giám đốc</td></tr>
+          <tr><td>Kế toán ngân hàng</td><td><span class="code">KTNH</span></td><td>Nhận hồ sơ đã duyệt, thực hiện chi, tải Ủy nhiệm chi lên và đóng hồ sơ</td></tr>
+          <tr><td>Quản trị</td><td><span class="code">ADM</span></td><td>Quản lý tài khoản, phòng ban, bảng phân công KTV, hạn mức duyệt, xem nhật ký</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Luồng xử lý</h2>
+      <p class="muted small">Bảy bước, nhưng <strong>hai bước có thể tắt</strong> — vẽ viền đứt trong sơ đồ. Hồ sơ nhỏ chỉ đi qua bốn bước. Thứ tự là bắt buộc, hồ sơ không nhảy cóc được.</p>
+    </div>
+
+    <div class="flow">
+      <ol class="flow-track">
+        <li class="step">
+          <span class="step-n">B1</span>
+          <h3>Nộp hồ sơ</h3>
+          <p>Nhân viên điền vào biểu mẫu chung, đính kèm chứng từ. Hệ thống cấp số BK theo phòng: <span class="code">MKT/42</span>.</p>
+          <span class="chip chip-idle">Mọi phòng ban</span>
+          <div class="actor">Người đề nghị</div>
+        </li>
+        <li class="step" style="border-top-style:dashed">
+          <span class="step-n">B2</span>
+          <h3>Trưởng bộ phận</h3>
+          <p>Duyệt ở cấp phòng trước khi hồ sơ sang kế toán. Phòng nào không cần thì tắt, hồ sơ bỏ qua bước này.</p>
+          <span class="chip chip-idle">Tắt được theo phòng</span>
+          <div class="actor">Trưởng bộ phận</div>
+        </li>
+        <li class="step">
+          <span class="step-n">B3</span>
+          <h3>Về đúng bàn</h3>
+          <p>Hồ sơ tự chuyển tới kế toán viên phụ trách phòng ban đó theo bảng phân công. Có người thay khi KTV nghỉ.</p>
+          <span class="chip chip-idle">Tự động định tuyến</span>
+          <div class="actor">Hệ thống</div>
+        </li>
+        <li class="step">
+          <span class="step-n">B4</span>
+          <h3>Kiểm tra hồ sơ</h3>
+          <p>KTV đối chiếu chứng từ với checklist. Hợp lệ thì đẩy lên duyệt, không hợp lệ thì trả về kèm lý do.</p>
+          <span class="chip chip-move">Đẩy lên duyệt</span>
+          <div class="actor">Kế toán viên</div>
+        </li>
+        <li class="step">
+          <span class="step-n">B5</span>
+          <h3>Phê duyệt kế toán</h3>
+          <p>Hệ thống tự chọn người duyệt theo số tiền: trong hạn mức thì <strong>KTTH</strong>, vượt hạn mức thì <strong>KTT</strong>.</p>
+          <span class="chip chip-wait">KTTH hoặc KTT</span>
+          <div class="actor">KTTH · KTT</div>
+        </li>
+        <li class="step" style="border-top-style:dashed">
+          <span class="step-n">B6</span>
+          <h3>Giám đốc</h3>
+          <p>Chỉ bật với hồ sơ vượt hạn mức lớn. Hồ sơ nhỏ không lên tới bàn giám đốc.</p>
+          <span class="chip chip-idle">Chỉ khi vượt hạn mức</span>
+          <div class="actor">Giám đốc</div>
+        </li>
+        <li class="step">
+          <span class="step-n">B7</span>
+          <h3>Chi và đóng hồ sơ</h3>
+          <p>KTNH chi tiền, tải Ủy nhiệm chi lên, ghi số UNC và ngày chi. Hồ sơ đóng lại.</p>
+          <span class="chip chip-done">Hoàn thành</span>
+          <div class="actor">Kế toán ngân hàng</div>
+        </li>
+      </ol>
+      <div class="flow-return">
+        <span class="arrow">◀◀◀</span>
+        <p><strong>Nhánh trả về.</strong> Từ bất kỳ bước duyệt nào — trưởng bộ phận, KTV, KTTH, KTT hay giám đốc — hồ sơ quay thẳng về người đề nghị kèm lý do bắt buộc, không lùi ngược từng bước. Người đề nghị sửa rồi nộp lại: giữ nguyên số BK, đi lại từ đầu, và toàn bộ lịch sử những lần bị trả về vẫn nằm trong hồ sơ.</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Trạng thái</th><th>Đang nằm ở đâu</th><th>Ai thao tác tiếp</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="chip chip-idle">Nháp</span></td><td>Người đề nghị chưa nộp</td><td>NDN</td></tr>
+          <tr><td><span class="chip chip-wait">Chờ trưởng bộ phận</span></td><td>Đã nộp, phòng có bật bước duyệt cấp phòng</td><td>TBP</td></tr>
+          <tr><td><span class="chip chip-wait">Chờ kế toán viên</span></td><td>Chờ KTV kiểm tra chứng từ</td><td>KTV phụ trách phòng</td></tr>
+          <tr><td><span class="chip chip-wait">Chờ KTTH</span></td><td>KTV đã đẩy lên, hồ sơ trong hạn mức</td><td>KTTH</td></tr>
+          <tr><td><span class="chip chip-wait">Chờ kế toán trưởng</span></td><td>KTV đã đẩy lên, hồ sơ vượt hạn mức</td><td>KTT</td></tr>
+          <tr><td><span class="chip chip-wait">Chờ giám đốc</span></td><td>Kế toán đã duyệt, hồ sơ vượt hạn mức lớn</td><td>GĐ</td></tr>
+          <tr><td><span class="chip chip-wait">Chờ chi</span></td><td>Đã duyệt xong toàn bộ</td><td>KTNH</td></tr>
+          <tr><td><span class="chip chip-done">Hoàn thành</span></td><td>Đã chi, đã có UNC</td><td>—</td></tr>
+          <tr><td><span class="chip chip-back">Trả về</span></td><td>Về lại người đề nghị kèm lý do</td><td>NDN sửa và nộp lại</td></tr>
+          <tr><td><span class="chip chip-idle">Đã hủy</span></td><td>Người đề nghị rút hồ sơ</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec-head" style="margin-top:6px">
+      <h3>Hạn mức đề xuất</h3>
+      <p class="muted small">Tính từ 56 giao dịch thật trong file Marketing của bạn, tổng 813 triệu. Con số sửa được trong phần cài đặt bất cứ lúc nào.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Số tiền hồ sơ</th><th>Đi qua những ai</th><th class="num">Ước tính mỗi tháng</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">Dưới 20 triệu</td><td>KTV → KTTH → KTNH</td><td class="num">~50 hồ sơ</td></tr>
+          <tr><td class="num">20 – 50 triệu</td><td>KTV → KTT → KTNH</td><td class="num">~1 hồ sơ</td></tr>
+          <tr><td class="num">Trên 50 triệu</td><td>KTV → KTT → <strong>Giám đốc</strong> → KTNH</td><td class="num">~5 hồ sơ</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <p><strong>Vì sao chọn hai mốc này.</strong> Trong 56 giao dịch của phòng Marketing, phần lớn nằm dưới 3 triệu — tiền tài khoản AI, Capcut, Zalo Business, nha khoa. Chỉ có năm khoản lớn: ba lần nạp ads Facebook 100 triệu, một gói Shopee 140,4 triệu và một khoản 50 triệu. Riêng năm khoản đó đã là 490,4 triệu — khoảng <strong>60% toàn bộ tiền chi ra</strong>. Đặt mốc giám đốc ở 50 triệu nghĩa là giám đốc ký khoảng <strong>5 lần mỗi tháng thay vì 56 lần</strong>, mà vẫn nắm được phần lớn giá trị.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Bản nhập liệu — lấy thẳng từ file Excel hiện tại</h2>
+      <p class="muted small">Căn cứ file <span class="code">2026_DNTT_MARKETING_v2.xlsx</span> của phòng Marketing. Nhân viên nhập y như đang nhập vào sheet, chỉ khác là mỗi ô có kiểm tra đúng sai, và phiếu ĐNTT tự sinh ra thay vì phải bấm công thức.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Cột trong sheet NHẬP LIỆU</th><th>Trong app</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>STT</td><td>Bỏ — hệ thống tự đánh số, không bao giờ trùng hay nhảy cóc</td></tr>
+          <tr><td>Số BK</td><td>Giữ nguyên cách đặt <span class="code">MKT/42</span>. Nhiều dòng cùng một số BK gom thành <strong>một phiếu ĐNTT</strong> — đúng như sheet MẪU ĐNTT đang làm</td></tr>
+          <tr><td>Ngày ĐNTT</td><td>Tự lấy ngày nộp, không cần gõ</td></tr>
+          <tr><td>Ngày CK</td><td>Người nhập không thấy ô này. Kế toán ngân hàng điền ở bước B5</td></tr>
+          <tr><td>Bộ phận</td><td>Đổi thành <strong>Phòng ban</strong>, chỉ một cấp, chọn từ danh mục. Tự điền theo tên người đề nghị nên hầu như không phải chạm vào</td></tr>
+          <tr><td>Loại chi phí</td><td>Chọn từ danh sách gợi ý theo bộ phận, gõ thêm được</td></tr>
+          <tr><td>Nội dung thanh toán</td><td>Mô tả chi tiết, bắt buộc</td></tr>
+          <tr><td>Đối tác / NCC · MST/CCCD · SĐT</td><td>Chọn một lần từ danh mục nhà cung cấp, ba ô tự điền theo</td></tr>
+          <tr><td>Link / Chứng từ</td><td><strong>Đổi thành tải file thật</strong> — chụp bằng điện thoại hoặc kéo thả. Trong file hiện tại cột này trống ở toàn bộ 56 dòng</td></tr>
+          <tr><td>Số tiền (VNĐ)</td><td>Ô nhập số, tự chấm phẩy và <strong>hiện luôn số tiền bằng chữ</strong> ngay bên dưới</td></tr>
+          <tr><td>Người ĐNTT</td><td><strong>Chọn tên mình từ danh sách nhân sự</strong> thay vì gõ tay — chọn xong thì ô Phòng ban tự điền theo. Không cần mật khẩu, mà vẫn không sai chính tả tên</td></tr>
+          <tr><td>Số TK nhận</td><td><strong>Lưu dạng chữ, không phải dạng số</strong> — xem mục lỗi bên dưới</td></tr>
+          <tr><td>NH nhận · Tên chủ TK</td><td>Chọn ngân hàng từ danh sách; tên chủ tài khoản tự điền theo nhà cung cấp</td></tr>
+          <tr><td>TK gửi</td><td>Chọn từ danh mục tài khoản công ty, không gõ tay</td></tr>
+          <tr><td>NOTE</td><td>Ghi chú tự do, giữ nguyên</td></tr>
+          <tr><td>Trạng thái CK</td><td>Hệ thống tự đặt theo bước đang chạy. Không ai gõ tay được</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p>Bốn sheet còn lại không cần nhập gì thêm — hệ thống tự có:</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <h3>TỔNG HỢP · THEO BỘ PHẬN</h3>
+        <p>Thành màn hình báo cáo, tính lại theo thời gian thực. Không còn công thức để vỡ.</p>
+      </article>
+      <article class="card">
+        <h3>MẪU ĐNTT</h3>
+        <p>Gõ số BK là ra phiếu, in đúng mẫu MKT-01 kèm số tiền bằng chữ. Trong app thì mở hồ sơ là thấy, không phải gõ số BK.</p>
+      </article>
+      <article class="card">
+        <h3>TỜ TRÌNH</h3>
+        <p>Giữ nguyên bố cục sáu mục. Phần căn cứ và mục tiêu soạn sẵn theo loại chi phí, sửa lại được.</p>
+      </article>
+      <article class="card">
+        <h3>Checklist chứng từ</h3>
+        <p>Bốn thứ ghi ở cuối file — ĐNTT, báo giá, tờ trình, biên bản nghiệm thu — thành ô tích bắt buộc trước khi nộp.</p>
+      </article>
+    </div>
+
+    <div class="callout">
+      <p><strong>Chỉ một cấp: tên phòng.</strong> Không chia nhóm nhỏ bên trong phòng. Danh mục phòng ban là một bảng quản trị tự thêm sửa được, nên không cần chốt danh sách đầy đủ ngay từ đầu — thêm một phòng mới mất chưa tới một phút.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Sáu lỗi đang có trong file Excel</h2>
+      <p class="muted small">Không phải chê file — sheet làm rất công phu. Nhưng đây là những lỗi Excel không thể chặn được, còn app thì chặn được.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Lỗi</th><th>Đang xảy ra</th><th>App xử lý</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="chip chip-back">Nguy hiểm</span> Số tài khoản bị bóp thành số khoa học</td>
+            <td>Excel tự đổi STK dài thành <span class="code">6.635E+14</span>, <span class="code">1.07882E+11</span>, <span class="code">1.90761E+13</span>. Mất hẳn các chữ số. Riêng chủ TK <em>BUI PHUONG ANH</em> có hai dòng ghi <span class="code">6.635E+14</span> và <span class="code">6.635E+13</span> — lệch nhau một chữ số, không thể biết số nào đúng</td>
+            <td>STK lưu dạng chữ nên giữ nguyên từng chữ số. Chọn từ danh mục thay vì gõ. Màn hình duyệt hiện STK cỡ lớn tách nhóm bốn số</td>
+          </tr>
+          <tr>
+            <td><span class="chip chip-back">Nguy hiểm</span> Không có chứng từ đính kèm</td>
+            <td>Cột <em>Link / Chứng từ</em> trống ở cả 56 dòng. Kế toán không có gì để đối chiếu ngoài dòng mô tả</td>
+            <td>Không đính kèm file thì không nộp được. File gắn chặt với hồ sơ, không xóa được</td>
+          </tr>
+          <tr>
+            <td>Công thức vỡ</td>
+            <td>Sheet TỔNG HỢP có một dòng <span class="code">#REF!</span> ăn mất giao dịch số 14</td>
+            <td>Không dùng công thức. Số liệu tính lại từ dữ liệu gốc mỗi lần mở</td>
+          </tr>
+          <tr>
+            <td>Ba bảng ra ba con số khác nhau</td>
+            <td>TỔNG HỢP báo <span class="num">56 GD / 813.285.001đ</span>, THEO BỘ PHẬN báo <span class="num">55 GD / 811.125.001đ</span>, THEO NGƯỜI chỉ báo <span class="num">15 GD / 404.925.682đ</span> vì thiếu hẳn Linh và Hà</td>
+            <td>Một nguồn dữ liệu duy nhất, mọi báo cáo cùng ra một con số</td>
+          </tr>
+          <tr>
+            <td>Trạng thái không ai cập nhật</td>
+            <td>Cả 56 dòng đều ghi trạng thái <span class="code">1</span>, ô <em>Đã CK</em> bằng 0, cột <em>Ngày CK</em> chỉ có đúng một dòng có giá trị. Nhìn vào không biết khoản nào đã chi</td>
+            <td>Trạng thái do thao tác duyệt sinh ra, không phải gõ tay. Không thể quên cập nhật</td>
+          </tr>
+          <tr>
+            <td>Danh mục trôi và STT trùng</td>
+            <td>Bộ phận <em>booking</em> có trong dữ liệu nhưng không có trong danh sách chọn nên lọt khỏi báo cáo. STT có hai dòng cùng số 29, thiếu 14, 16, 17, 18</td>
+            <td>Danh mục cố định do quản trị quản lý. Mã hồ sơ do hệ thống cấp, không trùng, không nhảy</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <p><strong>Còn một điều file Excel không bao giờ làm được:</strong> ai cũng sửa được mọi dòng và không để lại dấu vết. Một con số bị sửa sau khi kế toán đã duyệt thì không ai biết. App ghi lại từng thao tác — ai, lúc nào, sửa gì — và khóa hồ sơ lại sau khi duyệt.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Đã chốt và còn lại</h2>
+      <p class="muted small">Ba điểm về luồng duyệt đã chốt ngày 19/08. Năm điểm còn lại chưa chặn việc bắt đầu code.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Đã chốt</th><th>Kết luận</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ai được trả về</td><td><span class="chip chip-done">Chốt</span> Mọi cấp duyệt đều trả về được, và trả thẳng về người đề nghị chứ không lùi ngược từng bước. Bắt buộc ghi lý do</td></tr>
+          <tr><td>KTTH hay KTT duyệt</td><td><span class="chip chip-done">Chốt</span> Chọn một theo hạn mức số tiền. Dưới 20 triệu thì KTTH, từ 20 triệu trở lên thì KTT. Hạn mức sửa trong cài đặt</td></tr>
+          <tr><td>Trưởng bộ phận &amp; Giám đốc</td><td><span class="chip chip-done">Chốt</span> Trưởng bộ phận duyệt trước, bật/tắt theo từng phòng. Giám đốc duyệt cuối, chỉ với hồ sơ trên 50 triệu</td></tr>
+          <tr><td>Biểu mẫu nhập liệu</td><td><span class="chip chip-done">Chốt</span> Một biểu mẫu chung cho toàn công ty, giữ nguyên các cột của sheet NHẬP LIỆU. Cột Bộ phận tách làm hai cấp</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ol class="qlist">
+      <li>
+        <span class="qn">04</span>
+        <div class="qbody">
+          <p>Một phòng ban do bao nhiêu kế toán viên phụ trách, và khi KTV nghỉ phép thì hồ sơ đi đâu?</p>
+          <p class="sug">Đề xuất: <b>một KTV chính, một người thay</b>. Chỉ khi bật chế độ vắng mặt thì hồ sơ mới tự sang người thay.</p>
+        </div>
+      </li>
+      <li>
+        <span class="qn">05</span>
+        <div class="qbody">
+          <p>Thanh toán bằng <strong>tiền mặt</strong> có đi cùng luồng này không? Nếu có thì B5 không có UNC.</p>
+          <p class="sug">Đề xuất: <b>có, đi chung luồng</b>. Chuyển khoản thì bước cuối tải UNC, tiền mặt thì tải phiếu chi có chữ ký người nhận.</p>
+        </div>
+      </li>
+      <li>
+        <span class="qn">06</span>
+        <div class="qbody">
+          <p>Công ty có sẵn <strong>máy tính cũ hoặc máy chủ nào rảnh</strong> để cài hệ thống lên không?</p>
+          <p class="sug">Đề xuất: <b>chạy thử trên máy sẵn có với chi phí 0đ</b>, khi mở rộng toàn công ty mới chuyển sang VPS Việt Nam. Xem bảng so sánh ở mục <em>Vậy tiền tốn ở đâu</em> bên dưới.</p>
+        </div>
+      </li>
+      <li>
+        <span class="qn">07</span>
+        <div class="qbody">
+          <p><strong>Danh sách tên các phòng</strong> và <strong>danh sách nhân sự</strong> của mỗi phòng để đổ vào ô chọn tên người đề nghị.</p>
+          <p class="sug">Không chặn việc bắt đầu — cả hai đều là bảng quản trị tự thêm được. Gửi lúc nào cũng được, kể cả sau khi hệ thống đã chạy. Từ file Excel mình đã có sẵn Marketing và các tên Linh, Hà, Đức, Minh, Nhi, Khánh, Huyền, Hải, Khải, Sơn.</p>
+        </div>
+      </li>
+      <li>
+        <span class="qn">08</span>
+        <div class="qbody">
+          <p>Có cần nối với phần mềm kế toán đang dùng (MISA, Fast, Bravo…) không?</p>
+          <p class="sug">Đề xuất cho giai đoạn đầu: <b>chưa nối, chỉ xuất Excel</b> theo mẫu để nhập vào phần mềm kế toán. Nối trực tiếp tính sau khi luồng đã chạy ổn định.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Phạm vi tính năng</h2>
+      <p class="muted small">Chia ba mức. Mức 1 là bản chạy thật, đủ để thay hẳn quy trình giấy.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <h3>Mức 1 — Bản chạy thật</h3>
+        <ul>
+          <li>Hai lối vào: nhân viên không cần tài khoản, kế toán đăng nhập</li>
+          <li>Đường link tra cứu riêng cho từng hồ sơ</li>
+          <li>Danh mục phòng ban, danh sách nhân sự, bảng phân công KTV</li>
+          <li>Biểu mẫu ĐNTT: nội dung, số tiền, đơn vị thụ hưởng, số tài khoản, ngân hàng, hạn thanh toán</li>
+          <li>Đính kèm chứng từ, chụp từ điện thoại, tự gộp ảnh thành PDF</li>
+          <li>Xem trước PDF và ảnh ngay trong app, không phải tải về</li>
+          <li>Luồng B1→B5 đầy đủ kèm nhánh trả về có lý do bắt buộc</li>
+          <li>Hộp việc “Chờ tôi xử lý” cho từng vai trò</li>
+          <li>Tải UNC, ghi số UNC và ngày chi, đóng hồ sơ</li>
+          <li>Nhật ký hồ sơ: ai làm gì, lúc nào, ghi chú gì</li>
+          <li>Email thông báo mỗi lần hồ sơ chuyển bước</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Mức 2 — Sau khi chạy ổn</h3>
+        <ul>
+          <li>Danh mục nhà cung cấp và số tài khoản, chọn nhanh để khỏi gõ sai</li>
+          <li>Tra cứu, lọc theo phòng ban, trạng thái, khoảng tiền, khoảng ngày</li>
+          <li>Xuất Excel danh sách và chi tiết hồ sơ</li>
+          <li>Báo cáo: chi theo phòng ban, chi theo kỳ, hồ sơ tồn đọng, thời gian xử lý trung bình từng khâu</li>
+          <li>In phiếu ĐNTT đúng mẫu công ty, kèm mã QR tra cứu</li>
+          <li>Nhắc việc khi hồ sơ quá hạn xử lý</li>
+          <li>Duyệt nhiều hồ sơ cùng lúc</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Mức 3 — Cân nhắc sau</h3>
+        <ul>
+          <li>Thông báo qua Zalo OA hoặc Telegram</li>
+          <li>Đăng nhập bằng tài khoản Microsoft/Google của công ty</li>
+          <li>Chữ ký số hoặc chữ ký ảnh trên phiếu duyệt</li>
+          <li>Nối dữ liệu với phần mềm kế toán</li>
+          <li>Tách chi tiết khoản mục và mã ngân sách trên từng ĐNTT</li>
+          <li>Ứng dụng cài trên điện thoại</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Công nghệ — toàn bộ miễn phí</h2>
+      <p class="muted small">Không có món nào phải mua bản quyền, không có phí theo đầu người, không có bản dùng thử hết hạn. Tất cả đều là mã nguồn mở, dùng được cho mục đích thương mại, thêm bao nhiêu người dùng cũng không phát sinh tiền.</p>
+    </div>
+    <dl class="stack">
+      <div>
+        <dt>Giao diện &amp; xử lý</dt>
+        <dd><span class="pick">Next.js 15 + TypeScript</span> <span class="chip chip-done">MIT · miễn phí</span><br>Một dự án duy nhất cho cả giao diện lẫn phần xử lý phía sau, chạy tốt trên điện thoại, không phải nuôi hai bộ mã nguồn.</dd>
+      </div>
+      <div>
+        <dt>Thành phần giao diện</dt>
+        <dd><span class="pick">Tailwind CSS + shadcn/ui</span> <span class="chip chip-done">MIT · miễn phí</span><br>Bảng biểu, biểu mẫu, hộp thoại có sẵn. shadcn/ui chép thẳng mã nguồn vào dự án nên không phụ thuộc bên nào.</dd>
+      </div>
+      <div>
+        <dt>Cơ sở dữ liệu</dt>
+        <dd><span class="pick">PostgreSQL 16 + Prisma</span> <span class="chip chip-done">Miễn phí</span><br>Bền, giao dịch chặt chẽ — quan trọng khi nhiều người cùng thao tác trên một hồ sơ. Không giới hạn dung lượng hay số kết nối.</dd>
+      </div>
+      <div>
+        <dt>Kho file chứng từ</dt>
+        <dd><span class="pick">Ổ đĩa máy chủ</span> <span class="chip chip-done">0đ</span><br>Bỏ MinIO. File nằm thẳng trên ổ đĩa, app kiểm tra quyền rồi mới cho tải. Ít hơn một dịch vụ phải chạy, sao lưu dễ hơn, và với dưới 1.000 hồ sơ mỗi tháng thì thừa sức.</dd>
+      </div>
+      <div>
+        <dt>Đăng nhập</dt>
+        <dd><span class="pick">Auth.js</span> <span class="chip chip-done">ISC · miễn phí</span><br>Tài khoản nội bộ trước, sau này ghép thêm tài khoản Microsoft/Google mà không phải viết lại.</dd>
+      </div>
+      <div>
+        <dt>Chụp &amp; gộp chứng từ</dt>
+        <dd><span class="pick">browser-image-compression + pdf-lib</span> <span class="chip chip-done">MIT · miễn phí</span><br>Nén ảnh và gộp thành PDF ngay trên trình duyệt điện thoại, máy chủ không phải gánh việc nặng.</dd>
+      </div>
+      <div>
+        <dt>Gửi email thông báo</dt>
+        <dd><span class="pick">SMTP email công ty</span> <span class="chip chip-done">0đ nếu đã có</span><br>Dùng chính hộp thư công ty đang trả tiền. Nếu chưa có thì Brevo cho 300 email/ngày miễn phí, thừa cho quy mô này.</dd>
+      </div>
+      <div>
+        <dt>Máy chủ web &amp; HTTPS</dt>
+        <dd><span class="pick">Caddy</span> <span class="chip chip-done">Miễn phí</span><br>Tự xin và tự gia hạn chứng chỉ HTTPS từ Let's Encrypt, không tốn tiền, không phải nhớ ngày hết hạn.</dd>
+      </div>
+      <div>
+        <dt>Triển khai</dt>
+        <dd><span class="pick">Docker Compose</span> <span class="chip chip-done">Miễn phí</span><br>Ba khối: web, cơ sở dữ liệu, máy chủ web. Docker Engine trên Linux miễn phí không kèm điều kiện (khác với Docker Desktop trên Windows).</dd>
+      </div>
+      <div>
+        <dt>Sao lưu</dt>
+        <dd><span class="pick">pg_dump + rsync theo lịch</span> <span class="chip chip-done">0đ</span><br>Kết xuất cơ sở dữ liệu và đồng bộ thư mục file hằng đêm, giữ 30 bản, có diễn tập phục hồi trước khi bàn giao.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Vậy tiền tốn ở đâu</h2>
+      <p class="muted small">Phần mềm 0đ. Thứ duy nhất phải lo là chỗ đặt hệ thống. Ba phương án, xếp từ rẻ nhất tới đáng tin nhất.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Phương án</th><th class="num">Chi phí</th><th>Được gì</th><th>Đánh đổi</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Máy tính cũ trong công ty</td>
+            <td class="num">0đ</td>
+            <td>Một máy để bàn cũ cài Linux, đặt trong phòng IT. Dữ liệu không ra khỏi công ty. Nhân viên truy cập qua mạng nội bộ. Muốn dùng từ ngoài thì thêm Cloudflare Tunnel, cũng miễn phí, không cần IP tĩnh và không phải mở cổng tường lửa</td>
+            <td>Mất điện hay hỏng ổ cứng là dừng hệ thống. Bắt buộc phải có ổ cứng ngoài để sao lưu và người trông coi</td>
+          </tr>
+          <tr>
+            <td>Oracle Cloud Always Free</td>
+            <td class="num">0đ</td>
+            <td>Máy chủ ảo miễn phí vĩnh viễn, cấu hình rộng rãi, đặt tại Singapore nên truy cập từ Việt Nam vẫn nhanh. Mạnh hơn hẳn gói VPS trả tiền cùng tầm</td>
+            <td>Không cam kết dịch vụ. Oracle có quyền thu hồi máy nhàn rỗi và khóa tài khoản không báo trước. Dữ liệu kế toán nằm ở máy chủ nước ngoài</td>
+          </tr>
+          <tr>
+            <td>VPS Việt Nam</td>
+            <td class="num">200–400k/tháng</td>
+            <td>Có nhà cung cấp chịu trách nhiệm, có hỗ trợ tiếng Việt, có cam kết uptime, xuất hóa đơn được. Dữ liệu đặt trong nước</td>
+            <td>Khoản duy nhất tốn tiền thật, khoảng 2,5–5 triệu một năm</td>
+          </tr>
+          <tr>
+            <td>Vercel</td>
+            <td class="num">~500k/tháng</td>
+            <td>Triển khai chỉ bằng một lệnh đẩy mã nguồn, không phải quản trị máy chủ. Đây là công ty làm ra Next.js nên chạy mượt nhất</td>
+            <td>Gói miễn phí <strong>cấm dùng cho mục đích thương mại</strong> — xem mục dưới. Gói trả tiền tính theo đầu lập trình viên, và vẫn phải thuê thêm nơi lưu file</td>
+          </tr>
+          <tr>
+            <td>Tên miền riêng</td>
+            <td class="num">~250k/năm</td>
+            <td>Địa chỉ dễ nhớ kiểu <span class="code">duyetchi.drkam.vn</span> và chứng chỉ HTTPS hợp lệ</td>
+            <td>Chỉ cần khi truy cập từ ngoài công ty. Chạy nội bộ thì gõ địa chỉ IP là đủ, không tốn đồng nào</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <p><strong>Khuyến nghị.</strong> Giai đoạn chạy thử dùng máy tính cũ trong công ty — 0đ, dựng trong một buổi, đủ để một phòng ban dùng thật và góp ý. Khi đã chốt mở rộng toàn công ty thì chuyển sang VPS Việt Nam. Vì hệ thống đóng gói bằng Docker nên việc chuyển chỉ mất khoảng một tiếng, không phải viết lại gì. Mình không khuyên đặt dữ liệu kế toán lên gói miễn phí vĩnh viễn của Oracle: tiết kiệm được 3 triệu một năm nhưng đổi lại rủi ro bị khóa tài khoản mà không ai chịu trách nhiệm.</p>
+    </div>
+
+    <div class="sec-head" style="margin-top:14px">
+      <h3>Còn Vercel thì sao?</h3>
+    </div>
+    <div class="prose">
+      <p class="small muted">Câu hỏi hợp lý, vì Vercel chính là công ty làm ra Next.js và triển khai lên đó dễ nhất. Nhưng có ba vướng mắc thật, không phải chuyện kỹ thuật vặt:</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <h3>Gói miễn phí cấm dùng thương mại</h3>
+        <p>Điều khoản của Vercel định nghĩa “dùng thương mại” bao gồm cả trường hợp <em>có nhân viên hoặc người được trả công viết mã nguồn</em>. Phần mềm kế toán nội bộ của công ty rơi đúng vào đó. Muốn đúng luật phải lên gói Pro, tính tiền theo đầu lập trình viên mỗi tháng.</p>
+      </article>
+      <article class="card">
+        <h3>Không có ổ đĩa để lưu chứng từ</h3>
+        <p>Vercel chặn cứng mỗi lần tải lên ở mức 4,5 MB và không cho lưu file lâu dài. Một bộ hồ sơ scan vài chục trang là vượt ngay. Phải thuê thêm dịch vụ lưu file riêng và viết lại phần tải lên cho phức tạp hơn.</p>
+      </article>
+      <article class="card">
+        <h3>Dữ liệu đặt ở nước ngoài</h3>
+        <p>Toàn bộ chứng từ và số tài khoản ngân hàng của công ty nằm trên hạ tầng nước ngoài, không nằm trong tầm kiểm soát của phòng IT. Đây là điểm kế toán trưởng thường không duyệt.</p>
+      </article>
+    </div>
+    <div class="callout">
+      <p><strong>Muốn tiện như Vercel mà vẫn 0đ?</strong> Cài <span class="code">Coolify</span> hoặc <span class="code">Dokploy</span> lên chính máy chủ của công ty. Đây là phần mềm mã nguồn mở dựng lại đúng trải nghiệm của Vercel: đẩy mã nguồn lên là tự động build và chạy, tự cấp HTTPS, có bảng theo dõi. Khác ở chỗ máy chủ là của mình, không giới hạn thương mại, không giới hạn dung lượng file.</p>
+      <p><strong>Và quan trọng nhất:</strong> phần đọc ghi file sẽ được viết tách riêng thành một lớp thay thế được. Đổi giữa ổ đĩa máy chủ, Cloudflare R2 hay Vercel Blob chỉ là sửa cấu hình, không phải viết lại. Nên chuyện chọn chỗ chạy không chặn việc bắt đầu, và cũng không khóa cứng về sau.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Dữ liệu lưu những gì</h2>
+      <p class="muted small">Các bảng chính. Chi tiết từng cột sẽ chốt cùng lúc với mẫu biểu ĐNTT ở giai đoạn 0.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Bảng</th><th>Nội dung</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="code">nhan_su</span></td><td>Họ tên, phòng ban, email hoặc số điện thoại liên hệ, còn làm việc hay đã nghỉ. <strong>Không có mật khẩu</strong> — đây là danh sách để nhân viên chọn tên khi nộp hồ sơ</td></tr>
+          <tr><td><span class="code">tai_khoan</span></td><td>Chỉ dành cho kế toán, trưởng bộ phận và giám đốc: email, mật khẩu mã hóa, vai trò, chế độ vắng mặt. Nối tới một dòng trong <span class="code">nhan_su</span></td></tr>
+          <tr><td><span class="code">phong_ban</span></td><td>Mã phòng, tên phòng, có bắt buộc trưởng bộ phận duyệt hay không</td></tr>
+          <tr><td><span class="code">phan_cong_ktv</span></td><td>Phòng ban → kế toán viên chính → người thay. Chính bảng này làm nên bước B2</td></tr>
+          <tr><td><span class="code">de_nghi_thanh_toan</span></td><td>Số BK, người đề nghị, phòng ban, tổng tiền, hình thức chi, đơn vị thụ hưởng, số tài khoản, ngân hàng, hạn thanh toán, trạng thái, người đang giữ hồ sơ, thời điểm nộp, và <strong>mã tra cứu</strong> để người nộp mở lại hồ sơ mà không cần đăng nhập</td></tr>
+          <tr><td><span class="code">dong_chi_tiet</span></td><td>Các dòng thuộc cùng một số BK — nội dung, loại chi phí, số tiền từng dòng. Đúng như sheet MẪU ĐNTT đang gộp nhiều dòng vào một phiếu</td></tr>
+          <tr><td><span class="code">tep_dinh_kem</span></td><td>Thuộc hồ sơ nào, loại tệp (chứng từ hay ủy nhiệm chi), tên tệp, dung lượng, ai tải lên, lúc nào</td></tr>
+          <tr><td><span class="code">buoc_xu_ly</span></td><td>Mỗi lần nộp, duyệt, trả về, chi đều ghi một dòng: ai, hành động gì, từ trạng thái nào sang trạng thái nào, ghi chú và lý do</td></tr>
+          <tr><td><span class="code">chi_tra</span></td><td>Số UNC, ngày chi, tài khoản chi, số tiền thực chi, người thực hiện</td></tr>
+          <tr><td><span class="code">nha_cung_cap</span></td><td>Tên đơn vị, mã số thuế, danh sách số tài khoản ngân hàng đã dùng</td></tr>
+          <tr><td><span class="code">cai_dat</span></td><td>Hạn mức duyệt của KTTH, quy tắc sinh mã hồ sơ, thời hạn xử lý từng khâu</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <p><strong>Nguyên tắc bất biến.</strong> Bảng <span class="code">buoc_xu_ly</span> và các tệp đính kèm chỉ được thêm, không được sửa hay xóa — kể cả quản trị viên. Sai thì ghi một bước mới đính chính, chứ không xóa dấu vết cũ. Đây là điều kiện để hệ thống dùng được làm căn cứ đối chiếu khi kiểm toán.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Lộ trình</h2>
+      <p class="muted small">Bảy giai đoạn làm tuần tự. Hết giai đoạn 4 là đã cho một phòng ban chạy thử thật được.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Giai đoạn</th><th>Nội dung</th><th class="num">Ngày công</th><th>Bàn giao</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0 · Chốt quy trình</td>
+            <td>Trả lời 8 câu hỏi ở trên, lấy mẫu ĐNTT giấy đang dùng, lấy danh sách phòng ban và bảng phân công KTV, chốt mẫu Ủy nhiệm chi</td>
+            <td class="num">2</td>
+            <td>Bản mô tả quy trình đã duyệt</td>
+          </tr>
+          <tr>
+            <td>1 · Nền tảng</td>
+            <td>Dựng dự án, cơ sở dữ liệu, đăng nhập, phân quyền, quản lý người dùng và phòng ban, bảng phân công KTV, khung giao diện</td>
+            <td class="num">5</td>
+            <td>Đăng nhập được, quản trị tạo được người dùng</td>
+          </tr>
+          <tr>
+            <td>2 · Nộp hồ sơ</td>
+            <td>Biểu mẫu ĐNTT, tải và chụp chứng từ, gộp ảnh thành PDF, xem trước tệp, lưu nháp, nộp, sinh mã hồ sơ</td>
+            <td class="num">6</td>
+            <td>Phòng ban nộp được ĐNTT hoàn chỉnh</td>
+          </tr>
+          <tr>
+            <td>3 · Luồng duyệt</td>
+            <td>Định tuyến B2, hộp việc từng vai trò, KTV kiểm tra, đẩy lên duyệt theo hạn mức, KTTH/KTT duyệt, trả về kèm lý do, sửa và nộp lại, nhật ký hồ sơ</td>
+            <td class="num">7</td>
+            <td>Hồ sơ chạy hết B1→B4 và quay vòng trả về</td>
+          </tr>
+          <tr>
+            <td>4 · Chi và đóng hồ sơ</td>
+            <td>Màn hình kế toán ngân hàng, tải UNC, ghi số UNC và ngày chi, đóng hồ sơ, email thông báo ở mọi bước</td>
+            <td class="num">4</td>
+            <td>Đủ 5 bước, chạy thử được với một phòng ban</td>
+          </tr>
+          <tr>
+            <td>5 · Tra cứu &amp; báo cáo</td>
+            <td>Tìm kiếm và lọc, xuất Excel, báo cáo theo phòng ban và theo kỳ, hồ sơ tồn đọng, thời gian xử lý trung bình</td>
+            <td class="num">4</td>
+            <td>Kế toán trưởng có số liệu để theo dõi</td>
+          </tr>
+          <tr>
+            <td>6 · Nghiệm thu &amp; bàn giao</td>
+            <td>Chạy thử với dữ liệu thật, sửa lỗi, cài lên máy chủ, bật sao lưu tự động, viết tài liệu hướng dẫn, đào tạo từng nhóm vai trò</td>
+            <td class="num">4</td>
+            <td>Hệ thống chạy chính thức, nhân sự đã được đào tạo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p class="small muted">Tổng <strong>32 ngày công</strong>. Một người làm toàn thời gian là khoảng 6–7 tuần; cộng thời gian chờ phản hồi và nghiệm thu thì đặt mốc <strong>8 tuần</strong> cho an toàn. Con số này chưa gồm các hạng mục Mức 3.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Rủi ro và cách xử lý</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Rủi ro</th><th>Cách xử lý</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sai số tài khoản thụ hưởng, chuyển nhầm tiền</td><td>Chọn từ danh mục nhà cung cấp thay vì gõ tay; màn hình duyệt hiện số tài khoản cỡ lớn, tách nhóm bốn chữ số; KTNH nhập lại bốn số cuối để xác nhận trước khi đóng hồ sơ</td></tr>
+          <tr><td>Ảnh chụp từ điện thoại quá nặng hoặc mờ, kế toán không đọc được</td><td>Nén ảnh ngay trên trình duyệt trước khi tải lên, giới hạn 10 MB mỗi tệp; KTV trả về được với lý do “chứng từ mờ”</td></tr>
+          <tr><td>Nhân sự quen làm giấy, không chịu đổi</td><td>Biểu mẫu trên màn hình giữ đúng bố cục tờ ĐNTT giấy hiện tại và in ra được; chạy thử một phòng ban trong hai tuần trước khi mở rộng toàn công ty</td></tr>
+          <tr><td>Hồ sơ nằm im ở một khâu mà không ai biết</td><td>Mỗi trạng thái có thời hạn xử lý; quá hạn thì email nhắc người đang giữ hồ sơ và hiện trong báo cáo tồn đọng của kế toán trưởng</td></tr>
+          <tr><td>Mất dữ liệu hoặc hỏng máy chủ</td><td>Sao lưu hằng đêm giữ 30 bản, có một bản đặt ở nơi thứ hai; diễn tập phục hồi một lần trước khi bàn giao chính thức</td></tr>
+          <tr><td>Người không phận sự xem được chứng từ</td><td>Phân quyền theo vai trò và phòng ban ở tầng dữ liệu chứ không chỉ ẩn nút trên giao diện; đường dẫn tải tệp có hạn giờ; mọi lượt mở tệp đều ghi nhật ký</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <div class="rule"></div>
+      <h2>Ba việc tiếp theo</h2>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <h3>Bạn trả lời 8 câu hỏi</h3>
+        <p>Quan trọng nhất là câu 01 và 02 — hai câu đó quyết định hình dạng luồng duyệt, làm sai thì phải sửa lại nhiều.</p>
+      </article>
+      <article class="card">
+        <h3>Bạn gửi mẫu giấy đang dùng</h3>
+        <p>Một tờ ĐNTT thật đã điền, một mẫu Ủy nhiệm chi, danh sách phòng ban và ai phụ trách phòng nào.</p>
+      </article>
+      <article class="card">
+        <h3>Mình dựng bản xem trước</h3>
+        <p>Trước khi viết mã, mình dựng bản mô phỏng các màn hình chính để bạn và kế toán trưởng bấm thử. Góp ý xong mới bắt đầu giai đoạn 1.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <span>DrKam Duyệt Chi · Kế hoạch triển khai, bản thảo v1</span>
+    <span>Lập ngày 18/08/2026</span>
+  </footer>
+
+</div>

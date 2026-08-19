@@ -1,0 +1,344 @@
+@import "tailwindcss";
+
+/*
+  DrKam Duyệt Chi — bảng màu.
+  Xanh mực làm màu chính, đỏ dấu cho việc trả về, vàng cho việc đang chờ,
+  xanh lá cho việc đã xong. Giao diện một tông sáng, không đổi theo hệ điều hành
+  để mọi người nhìn cùng một màu khi đối chiếu chứng từ.
+*/
+:root {
+  --nen: #f5f7fa;
+  --mat: #ffffff;
+  --mat-2: #eef1f6;
+  --muc: #16202e;
+  --muc-2: #4a5769;
+  --muc-3: #7c8899;
+  --vien: #d9dfe8;
+  --vien-nhat: #e8ecf2;
+
+  --chinh: #1e4e8c;
+  --chinh-dam: #163a68;
+  --chinh-nhat: #e6edf7;
+
+  --dau: #b3352b;
+  --dau-nhat: #fae9e7;
+  --cho: #8a5a0c;
+  --cho-nhat: #fbf0da;
+  --xong: #1c6b51;
+  --xong-nhat: #ddefe7;
+}
+
+@theme inline {
+  --color-nen: var(--nen);
+  --color-mat: var(--mat);
+  --color-mat-2: var(--mat-2);
+  --color-muc: var(--muc);
+  --color-muc-2: var(--muc-2);
+  --color-muc-3: var(--muc-3);
+  --color-vien: var(--vien);
+  --color-vien-nhat: var(--vien-nhat);
+  --color-chinh: var(--chinh);
+  --color-chinh-dam: var(--chinh-dam);
+  --color-chinh-nhat: var(--chinh-nhat);
+  --color-dau: var(--dau);
+  --color-dau-nhat: var(--dau-nhat);
+  --color-cho: var(--cho);
+  --color-cho-nhat: var(--cho-nhat);
+  --color-xong: var(--xong);
+  --color-xong-nhat: var(--xong-nhat);
+  --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
+}
+
+html,
+body {
+  background: var(--nen);
+  color: var(--muc);
+}
+
+/* Số tiền và số tài khoản luôn thẳng cột */
+.so {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ô nhập liệu dùng chung */
+.o-nhap {
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid var(--vien);
+  background: var(--mat);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--muc);
+  outline: none;
+}
+.o-nhap::placeholder {
+  color: var(--muc-3);
+}
+.o-nhap:focus {
+  border-color: var(--chinh);
+  box-shadow: 0 0 0 3px var(--chinh-nhat);
+}
+.o-nhap:disabled {
+  background: var(--mat-2);
+  color: var(--muc-2);
+}
+
+.nhan-o {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--muc-2);
+}
+
+/* Nút */
+.nut {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+.nut:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.nut-chinh {
+  background: var(--chinh);
+  color: #fff;
+}
+.nut-chinh:hover:not(:disabled) {
+  background: var(--chinh-dam);
+}
+.nut-phu {
+  background: var(--mat);
+  color: var(--muc);
+  border-color: var(--vien);
+}
+.nut-phu:hover:not(:disabled) {
+  background: var(--mat-2);
+}
+.nut-dau {
+  background: var(--dau);
+  color: #fff;
+}
+.nut-dau:hover:not(:disabled) {
+  filter: brightness(0.92);
+}
+
+/* Thẻ trạng thái */
+.the {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.25rem;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.the-cho {
+  background: var(--cho-nhat);
+  color: var(--cho);
+}
+.the-xong {
+  background: var(--xong-nhat);
+  color: var(--xong);
+}
+.the-tra {
+  background: var(--dau-nhat);
+  color: var(--dau);
+}
+.the-nghi {
+  background: var(--mat-2);
+  color: var(--muc-2);
+}
+
+/* Khối nội dung */
+.khoi {
+  background: var(--mat);
+  border: 1px solid var(--vien);
+  border-radius: 0.5rem;
+}
+
+/* Bảng */
+.bang {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.bang thead th {
+  text-align: left;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muc-3);
+  background: var(--mat-2);
+  border-bottom: 1px solid var(--vien);
+  white-space: nowrap;
+}
+.bang tbody td {
+  padding: 0.75rem 0.875rem;
+  border-bottom: 1px solid var(--vien-nhat);
+  vertical-align: top;
+  color: var(--muc-2);
+}
+.bang tbody tr:last-child td {
+  border-bottom: 0;
+}
+.bang tbody tr:hover td {
+  background: var(--mat-2);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Bản in phiếu ĐNTT — mẫu MKT-01
+
+   Dựng lại đúng tờ giấy công ty đang dùng: chữ Times, khổ A4 dọc,
+   bốn ô ký ở chân trang. Bản in này mới là thứ đi qua tay ký và
+   lưu bản cứng, nên không được đẹp theo kiểu web — phải giống tờ cũ.
+   ───────────────────────────────────────────────────────────── */
+.phieu {
+  font-family: 'Times New Roman', Times, serif;
+  color: #000;
+  background: #fff;
+  width: 210mm;
+  padding: 12mm 14mm;
+  margin: 0 auto;
+  font-size: 13pt;
+  line-height: 1.35;
+  box-shadow: 0 1px 3px rgb(22 32 46 / 0.12);
+}
+
+.phieu-dau {
+  display: flex;
+  gap: 6mm;
+}
+.phieu-dau > div {
+  flex: 1;
+  text-align: center;
+}
+.phieu-cty {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.phieu-dc {
+  font-style: italic;
+  font-size: 10.5pt;
+}
+.phieu-quoc-hieu {
+  font-weight: 700;
+}
+.phieu-mau {
+  font-style: italic;
+  font-size: 10.5pt;
+  color: #808080;
+  margin-top: 3mm;
+}
+.phieu-ngay {
+  font-style: italic;
+  margin-top: 1mm;
+}
+.phieu h1 {
+  font-size: 19pt;
+  font-weight: 700;
+  text-align: center;
+  margin: 8mm 0 5mm;
+}
+.phieu-dong {
+  margin-top: 1.5mm;
+}
+
+/* Bảng chi tiết: viền đen đủ bốn cạnh như bản Excel */
+.bang-in {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 3mm;
+  font-size: 11pt;
+}
+.bang-in th,
+.bang-in td {
+  border: 1px solid #000;
+  padding: 2mm;
+  vertical-align: top;
+}
+.bang-in thead th {
+  background: #4472c4;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+  /* Nền màu phải in ra, không thì mất hẳn hàng tiêu đề */
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.bang-in .o-giua {
+  text-align: center;
+}
+.bang-in .o-tien {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.bang-in .dong-cong td {
+  background: #fce4d6;
+  font-weight: 700;
+  text-align: center;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Bốn ô ký ở chân trang */
+.chu-ky {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 7mm;
+}
+.chu-ky td {
+  width: 25%;
+  padding: 0 2mm;
+  text-align: center;
+  vertical-align: top;
+}
+.chu-ky .o-ten {
+  font-weight: 700;
+}
+.chu-ky .o-huong-dan {
+  font-style: italic;
+  font-size: 10.5pt;
+}
+.chu-ky .o-nguoi {
+  margin-top: 20mm;
+  font-weight: 700;
+  min-height: 1.4em;
+}
+
+@media print {
+  .khong-in {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff;
+  }
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  .phieu {
+    width: auto;
+    margin: 0;
+    box-shadow: none;
+  }
+  /* Không để bảng hay ô ký bị cắt ngang giữa hai trang */
+  .bang-in tr,
+  .chu-ky {
+    break-inside: avoid;
+  }
+}

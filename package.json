@@ -1,0 +1,41 @@
+{
+  "name": "duyet-chi",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "tao-quan-tri": "node scripts/tao-quan-tri.mjs",
+    "tao-tai-khoan": "node scripts/tao-tai-khoan.mjs",
+    "kiem-tra": "tsc --noEmit",
+    "kiem-tra-sql": "node scripts/kiem-tra-sql.mjs",
+    "kiem-tra-ket-noi": "node scripts/kiem-tra-ket-noi.mjs"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.4",
+    "@supabase/supabase-js": "^2.112.3",
+    "next": "16.3.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.5",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true,
+    "better-sqlite3@13.0.3": true,
+    "@prisma/engines@7.9.1": true,
+    "prisma@7.9.1": true,
+    "unrs-resolver@1.12.2": true
+  }
+}
