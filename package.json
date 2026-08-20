@@ -9,7 +9,7 @@
     "lint": "eslint",
     "tao-quan-tri": "node scripts/tao-quan-tri.mjs",
     "tao-tai-khoan": "node scripts/tao-tai-khoan.mjs",
-    "kiem-tra": "tsc --noEmit",
+    "kiem-tra": "next typegen && tsc --noEmit",
     "kiem-tra-sql": "node scripts/kiem-tra-sql.mjs",
     "kiem-tra-ket-noi": "node scripts/kiem-tra-ket-noi.mjs"
   },

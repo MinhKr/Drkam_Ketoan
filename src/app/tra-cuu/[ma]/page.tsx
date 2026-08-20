@@ -49,7 +49,8 @@ export default async function TrangHoSoTheoMa({
     requires_head_approval: boolean;
   } | null;
 
-  const [{ data: dong }, { data: tep }, { data: buoc }, hanMuc] = await Promise.all([
+  const [{ data: dong }, { data: tep }, { data: buoc }, { data: khoanChi }, hanMuc] =
+    await Promise.all([
     db
       .from('request_lines')
       .select('id, line_no, expense_type, description, amount')
@@ -65,6 +66,11 @@ export default async function TrangHoSoTheoMa({
       .select('id, action, to_status, actor_name, actor_role, note, created_at')
       .eq('request_id', hoSo.id)
       .order('created_at'),
+    db
+      .from('payments')
+      .select('unc_number, paid_at, amount_paid')
+      .eq('request_id', hoSo.id)
+      .maybeSingle(),
     layHanMuc(db),
   ]);
 
@@ -173,6 +179,25 @@ export default async function TrangHoSoTheoMa({
           </p>
         )}
       </div>
+
+      {/* ── Đã chi xong ──────────────────────────────────── */}
+      {khoanChi && (
+        <div className="mt-5 rounded-md border border-xong/30 bg-xong-nhat px-4 py-4">
+          <p className="font-semibold text-xong">Đã chi tiền — hồ sơ khép lại</p>
+          <p className="mt-1.5 text-sm text-muc-2">
+            Chi <span className="so font-semibold text-muc">{dinhDangTien(khoanChi.amount_paid)} ₫</span>{' '}
+            ngày <span className="so">{dinhDangNgay(khoanChi.paid_at)}</span>
+            {khoanChi.unc_number && (
+              <>
+                {' '}
+                theo chứng từ số <span className="so">{khoanChi.unc_number}</span>
+              </>
+            )}
+            . Tiền chưa về thì hỏi lại phòng kế toán kèm số hồ sơ{' '}
+            <span className="so font-semibold">{hoSo.code}</span>.
+          </p>
+        </div>
+      )}
 
       {/* ── Bị trả về ────────────────────────────────────── */}
       {biTraVe && (

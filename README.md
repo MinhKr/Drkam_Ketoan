@@ -141,6 +141,35 @@ Hạn mức mặc định (sửa được trong Quản trị › Hạn mức):
 - Từ 20 triệu → kế toán trưởng duyệt
 - Từ 50 triệu → thêm giám đốc duyệt
 
+### Ai bấm được nút duyệt
+
+- Đúng **vai trò** của bước hồ sơ đang chờ. Quản trị **không** duyệt thay được — quyền
+  quản trị là để khai báo danh mục, không phải để đi tắt luồng duyệt.
+- Bước kế toán viên giao **đích danh** người phụ trách phòng đó (hoặc người thay khi họ
+  nghỉ). Các bước sau nằm ở hàng chờ chung: ai giữ vai trò đó cũng mở ra duyệt được.
+- Hai người cùng bấm duyệt một lúc thì chỉ lần bấm đầu ăn; lần sau báo *"hồ sơ vừa được
+  người khác xử lý"* chứ không đẩy hồ sơ vọt thêm một bước.
+- **Hủy hồ sơ** chỉ kế toán trưởng và quản trị làm được, và chỉ khi chưa chi xong. Dùng
+  cho hồ sơ nộp trùng hay nộp nhầm phòng — hồ sơ hủy vẫn giữ nguyên nhật ký.
+
+### Bước chi tiền
+
+Kế toán ngân hàng có mục **Chờ chi** riêng: mọi hồ sơ đã duyệt xong, kèm sẵn số tài khoản
+người nhận để khỏi mở từng hồ sơ ra chép, hạn gần nhất xếp lên trên, hồ sơ quá hạn tô đỏ.
+
+Chuyển tiền xong thì ghi nhận ngay trên hồ sơ: số UNC, ngày chi, tài khoản công ty đã chi
+đi, số tiền thực chi và **bản Ủy nhiệm chi đính kèm**. Vài điểm cố ý làm chặt:
+
+- Hồ sơ **chuyển khoản bắt buộc đính kèm UNC**. Không có màn hình bổ sung chứng từ sau khi
+  đóng hồ sơ, nên thiếu lúc này là thiếu vĩnh viễn khi kiểm toán đối chiếu.
+- Số tiền chi **lệch** so với số đề nghị thì bắt buộc ghi lý do (phí chuyển tiền, làm tròn…).
+- Chi tiền mặt thì số phiếu chi và bản chụp phiếu là tùy chọn — phiếu chi ký tay lưu bản giấy.
+- Cột `request_id` của bảng `payments` là **unique**, nên hai người cùng bấm thì chỉ một
+  người ghi được; người sau nhận báo *"hồ sơ đã có người ghi nhận chi rồi"*.
+
+Đóng hồ sơ xong, người nộp mở link tra cứu là thấy ngay đã chi bao nhiêu, ngày nào, chứng
+từ số mấy.
+
 ---
 
 ## Công nghệ
@@ -231,7 +260,11 @@ Trong hệ thống mới, cột số tài khoản là kiểu chữ và có ràng
 - [x] **Giai đoạn 2 — Nộp hồ sơ**: biểu mẫu ĐNTT nhiều dòng, đính kèm và nén ảnh,
       danh mục nhà cung cấp / tài khoản ngân hàng / loại chi phí, cấp số BK, lưu nháp,
       link tra cứu, sửa và nộp lại
-- [ ] **Giai đoạn 3 — Luồng duyệt**: hộp việc, duyệt, trả về kèm lý do, nhật ký
-- [ ] **Giai đoạn 4 — Chi và đóng hồ sơ**: màn hình kế toán ngân hàng, tải UNC, email thông báo
+- [x] **Giai đoạn 3 — Luồng duyệt**: màn hình chi tiết hồ sơ cho ban kế toán, duyệt theo
+      hạn mức, trả về người đề nghị kèm lý do, hủy hồ sơ, nhật ký từng bước, danh sách
+      **Tất cả hồ sơ** có lọc theo trạng thái / phòng ban / từ khóa
+- [x] **Giai đoạn 4 — Chi và đóng hồ sơ**: màn hình **Chờ chi** của kế toán ngân hàng, ghi
+      số UNC / ngày chi / tài khoản chi, đính kèm Ủy nhiệm chi, đóng hồ sơ và hiện kết quả
+      cho người nộp. *Email thông báo chưa làm — chốt cách gửi rồi làm sau.*
 - [ ] **Giai đoạn 5 — Tra cứu & báo cáo**: lọc, xuất Excel, in phiếu ĐNTT và tờ trình
 - [ ] **Giai đoạn 6 — Nghiệm thu & bàn giao**

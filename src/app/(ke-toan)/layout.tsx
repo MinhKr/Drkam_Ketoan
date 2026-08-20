@@ -17,6 +17,7 @@ type MucDieuHuong = {
 const DIEU_HUONG: MucDieuHuong[] = [
   { duongDan: '/bang-dieu-khien', nhan: 'Chờ tôi xử lý' },
   { duongDan: '/ho-so', nhan: 'Tất cả hồ sơ' },
+  { duongDan: '/chi-tien', nhan: 'Chờ chi', vaiTro: [VAI_TRO.KE_TOAN_NGAN_HANG] },
   { duongDan: '/danh-muc', nhan: 'Danh mục', vaiTro: [VAI_TRO.KE_TOAN_VIEN, VAI_TRO.KE_TOAN_TONG_HOP, VAI_TRO.KE_TOAN_TRUONG] },
   { duongDan: '/quan-tri', nhan: 'Quản trị', vaiTro: [VAI_TRO.QUAN_TRI] },
 ];
